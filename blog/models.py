@@ -15,6 +15,7 @@ class Post(models.Model):
     )
 
     title = models.CharField(max_length=250)
+    summary = models.CharField(max_length=500)
     slug = models.SlugField(max_length=250, unique_for_date="publish")
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="blog_posts")
     body = models.TextField()

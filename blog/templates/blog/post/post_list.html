@@ -1,0 +1,70 @@
+<!-- blog/post/post_list.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ block.super }} - Blog Posts
+{% endblock title %}
+
+<!-- Dynamic content on banner overlay -->
+{% block banner_content %}
+<div class="col d-flex align-items-center justify-content-center">
+    <div class="text-center">
+        <hr class="hr-accent">
+        <h1 class="display-4">My Blog</h1>
+        <hr class="hr-accent">
+    </div>
+</div>
+{% endblock banner_content %}
+<!-- Dynamic content on banner overlay ends -->
+
+<!-- Page content sections -->
+{% block content %}
+
+<!-- Section 1-->
+<div class="content-section bg-dark d-flex justify-content-center">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3">
+            {% for post in posts %}
+            <div class="col mb-4 d-flex justify-content-center">
+                <a class="card-link d-flex justify-content-center" href="#">
+                    <div class="card col-12 col-sm-9 col-md-12 bg-dark color-secondary">
+                        <picture>
+
+                            <!-- building the card image static url from slug -->
+                            <!-- https://stackoverflow.com/questions/16655851/django-1-5-how-to-use-variables-inside-static-tag -->
+                            {% with "assets/img/blog/"|add:post.slug|add:'.jpeg' as thumb_static %}
+                            <img src="{% static thumb_static %}" class="card-img-top" alt="">
+                            {% endwith %}
+
+                        </picture>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <p class="card-text">{{ post.summary }}</p>
+                        </div>
+                        <div class="card-footer text-muted">
+
+                            {{ post.publish }}
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Section 1 ends -->
+
+<!-- Section 2 -->
+<div class="content-section bg-dark-secondary d-flex justify-content-center">
+    <div class="row justify-content-center align-self-center text-center">
+        <div class="col-sm-12">
+            <h2 class="quote">If it's not difficult, it is not worth having</h2>
+        </div>
+    </div>
+</div>
+<!-- Section 2 ends -->
+
+{% endblock content %}

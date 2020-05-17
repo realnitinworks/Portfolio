@@ -1,0 +1,38 @@
+<!-- Navbar -->
+<nav class="navbar navbar-dark navbar-expand-md bg-dark">
+    <div class="container"><a class="navbar-brand" href="{% url "portfolio:home" %}"
+            style="font-size: 24px;"><strong>RealNitinWorks</strong></a><button data-toggle="collapse"
+            class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link {% if active == "home" %} active {% endif %}" href="{% url "portfolio:home" %}">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link {% if active == "portfolio" %} active {% endif %}" href="#">
+                        Portfolio
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link {% if active == "blog" %} active {% endif %}" href="{% url "blog:post_list" %}">
+                        Blog
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link {% if active == "feeds" %} active {% endif %}" href="#">
+                        Feeds
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link {% if active == "contact" %} active {% endif %}" href="#">
+                        Contact
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Navbar ends -->
