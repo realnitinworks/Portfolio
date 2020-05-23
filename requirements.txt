@@ -1,3 +1,4 @@
 Django==3.0.5
 psycopg2-binary==2.8.5
 django-pagedown==2.0.3
+markdown==3.2.1

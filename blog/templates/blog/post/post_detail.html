@@ -2,6 +2,7 @@
 
 {% extends 'base.html' %}
 {% load static %}
+{% load blog_tags %}
 
 {% block title %}
 {{ block.super }} - Blog - {{ post.title }}
@@ -27,9 +28,7 @@
 <!-- Section 1-->
 <div class="content-section bg-dark d-flex justify-content-center">
     <div class="container">
-        <div class="content-markdown">
-            {{ post.body }}
-        </div>
+        {{ post.body|markdown }}
     </div>
 </div>
 <!-- Section 1 ends -->
