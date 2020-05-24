@@ -53,6 +53,13 @@
             </div>
             {% endfor %}
         </div>
+
+        <!-- Pagination links -->
+        <div class="mt-5">
+            {% include 'pagination.html' with page=posts next="Older Posts" previous="Newer Posts"%}
+        </div>
+        <!-- Pagination ends -->
+
     </div>
 </div>
 <!-- Section 1 ends -->

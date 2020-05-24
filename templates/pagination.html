@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="post pagination nav">
+            <ul class="pagination justify-content-center">
+                <!-- Newer posts appear first -->
+                {% if page.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page.previous_page_number }}">{{ previous }}</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">{{ previous }}</a>
+                </li>
+                {% endif %}
+
+                <!-- Current page -->
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">Page {{ page.number }} of {{ page.paginator.num_pages }}</a>
+                </li>
+
+                <!-- Older posts appear later -->
+                {% if page.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page.next_page_number }}">{{ next }}</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">{{ next }}</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
