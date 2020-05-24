@@ -1,3 +1,11 @@
+body {
+  line-height: 1.5;
+}
+
+a, a:hover, a:visited, a:active{
+  color: #f77f00;  
+}
+
 .navbar {
   border-bottom: 2px solid #f77f00;
 }
@@ -126,4 +134,23 @@
 
 .color-secondary {
   color: #fff;
+}
+
+/* Code blocks in blog posts */
+div.highlight pre {
+  background-color: #312f25;
+  padding: 10px;
+  font-size: large;
+}
+
+/* Override the Boostrap Blockquote */
+blockquote {
+    padding: 10px 20px;
+    margin: 0 0 20px;
+    font-size: 17.5px;
+    border-left: 5px solid #868181;
+}
+
+blockquote > p {
+    margin-bottom: 0;
 }
