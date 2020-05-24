@@ -1,0 +1,12 @@
+{% if sent %}
+    <p>
+        '{{ post.title }}' has been sent!
+    </p>
+{% else %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Send">
+</form>
+{% endif %}
+<a href="{{ post.get_absolute_url }}">Back to Post</a>

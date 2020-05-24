@@ -18,3 +18,14 @@ class PostAdminForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = "__all__"
+
+
+class PostEmailForm(forms.Form):
+    """
+    Form for sharing post by email.
+    """
+
+    name = forms.CharField(max_length=25)
+    email = forms.EmailField()
+    to = forms.EmailField()
+    comment = forms.CharField(required=False, widget=forms.Textarea)
