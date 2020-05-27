@@ -154,3 +154,9 @@ blockquote {
 blockquote > p {
     margin-bottom: 0;
 }
+
+.btn-app-custom {
+  color: #fff;
+  border-color: #f77f00;
+  background-color: #f77f00;
+}

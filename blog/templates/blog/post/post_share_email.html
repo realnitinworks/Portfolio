@@ -1,12 +1,58 @@
-{% if sent %}
-    <p>
-        '{{ post.title }}' has been sent!
-    </p>
-{% else %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Send">
-</form>
-{% endif %}
-<a href="{{ post.get_absolute_url }}">Back to Post</a>
+<!-- blog/post/post_share_email.html -->
+
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+{{ block.super }} - Email - {{ post.title }}
+{% endblock title %}
+
+<!-- Dynamic content on banner overlay -->
+{% block banner_content %}
+<div class="col d-flex align-items-center justify-content-center">
+    <div class="text-center">
+        <hr class="hr-accent">
+        <h1 class="display-5">Email '{{ post.title }}'</h1>
+        <hr class="hr-accent">
+    </div>
+</div>
+{% endblock banner_content %}
+<!-- Dynamic content on banner overlay ends -->
+
+<!-- Page content sections -->
+{% block content %}
+
+<!-- Section 1-->
+<div class="content-section bg-dark d-flex justify-content-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                {% if sent %}
+                <h3>
+                    Email Sent!
+                </h3>
+                {% else %}
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <input class="btn btn-app-custom btn-block" type="submit" value="Send">
+                </form>
+                {% endif %}
+                <a class="mt-3 d-inline-block" href="{{ post.get_absolute_url }}">Back to Post</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Section 1 ends -->
+
+<!-- Section 2 -->
+<div class="content-section bg-dark-secondary d-flex justify-content-center">
+    <div class="row justify-content-center align-self-center text-center">
+        <div class="col-sm-12">
+            <h2 class="quote">If it's not difficult, it is not worth having</h2>
+        </div>
+    </div>
+</div>
+<!-- Section 2 ends -->
+
+{% endblock content %}

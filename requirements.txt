@@ -3,3 +3,4 @@ psycopg2-binary==2.8.5
 django-pagedown==2.0.3
 mistune==2.0.0a4
 pygments==2.6.1
+django-crispy-forms==1.9.1

@@ -29,7 +29,7 @@
 <div class="content-section bg-dark d-flex justify-content-center">
     <div class="container">
         {{ post.body|markdown }}
-        <a href="{% url 'blog:post_share_by_email' post.id %}">Email</a>
+        <a href="{% url 'blog:post_share_by_email' post.id %}"><i class="fa fa-envelope fa-2x"></i></a>
     </div>
 </div>
 <!-- Section 1 ends -->

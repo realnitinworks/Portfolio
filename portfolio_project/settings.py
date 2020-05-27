@@ -37,13 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'portfolio.apps.PortfolioConfig',
 
     # 3rd-party apps
     'pagedown.apps.PagedownConfig',
+    'crispy_forms',
 
     # local apps
-    'blog.apps.BlogConfig'
+    'portfolio.apps.PortfolioConfig',
+    'blog.apps.BlogConfig',
 ]
 
 MIDDLEWARE = [
@@ -144,3 +145,7 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+
+# BOOTSTRAP FORMS
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
