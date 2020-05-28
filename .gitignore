@@ -2,3 +2,4 @@ __pycache__
 .portfolio_env
 *.sqlite3
 .vscode
+Dockerfile.prod
