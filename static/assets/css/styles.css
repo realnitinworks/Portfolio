@@ -34,6 +34,7 @@
   --banner-color: var(--white-color);
   --quote-color: var(--white-color);
   --footer-color: var(--white-color);
+  --footer-link-color: var(--white-color);
 }
 
 body {
@@ -120,6 +121,16 @@ a.navbar-brand:hover {
 footer {
   background-color: var(--footer-background);
   color: var(--footer-color);
+}
+
+footer a {
+  text-decoration: none;
+  color: var(--footer-link-color);
+}
+
+footer a:hover {
+  text-decoration: none;
+  color: var(--third-set-primary-color);
 }
 
 .section-primary {
