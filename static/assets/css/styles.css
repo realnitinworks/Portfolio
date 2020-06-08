@@ -1,162 +1,186 @@
-body {
-  line-height: 1.5;
+:root {
+  --black-color: black;
+  --navbar-brand-hover-color: var(--black-color);
+  --navbar-links-hover-color: var(--black-color);
+  --footer-background: var(--black-color);
+  --post-list-link-color: var(--black-color);
+  --pagination-link-color: var(--black-color);
+
+  --first-set-primary-color: #cc1e48cf;
+  --first-set-secondary-color: #ce3d5fcf;
+  --header-background-secondary-color: var(--first-set-secondary-color);
+  --header-background-primary-color: var(--first-set-primary-color);
+  --heading-underline-color: var(--first-set-primary-color);
+  --list-tick-color: var(--first-set-primary-color);
+
+  --second-set-primary-color: #d6d6d6;
+  --second-set-secondary-color: #f0eaea;
+  --title-underline-color: var(--second-set-primary-color);
+  --about-background-color: var(--second-set-primary-color);
+  --section-background-primary-color: var(--second-set-primary-color);
+  --section-background-secondary-color: var(--second-set-secondary-color);
+
+  --third-set-primary-color: #f04216;
+  --post-detail-link-color: var(--third-set-primary-color);
+  --section-boundary-color: var(--third-set-primary-color);
+  --email-share-form-link-color: var(--third-set-primary-color);
+
+  --fourth-set-primary-color: #4d4948;
+  --blockquote-color: var(--fourth-set-primary-color);
+  --code-background-color: var(--fourth-set-primary-color);
+
+  --white-color: white;
+  --navbar-color: var(--white-color);
+  --banner-color: var(--white-color);
+  --quote-color: var(--white-color);
+  --footer-color: var(--white-color);
 }
 
-a, a:hover, a:visited, a:active{
-  color: #f77f00;  
+body {
+  color: var(--black-color);
+}
+
+.h-100 {
+  height: 100%!important;
 }
 
 .navbar {
-  border-bottom: 2px solid #f77f00;
+  background-color: var(--header-background-secondary-color);
+  color: var(--navbar-color);
 }
 
-.banner {
-  background-image: url(../../assets/img/banner.jpeg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  overflow: hidden;
-  color: #fff;
+a.navbar-brand:hover {
+  color: var(--navbar-brand-hover-color)!important
+}
+
+.navbar ul li a {
+  font-weight: 800;
+}
+
+.navbar ul li a:hover {
+  color: var(--navbar-links-hover-color)!important;
+}
+
+#banner {
+  background-color: var(--header-background-primary-color);
+  color: var(--banner-color);
+}
+
+#banner > div {
   min-height: 600px;
-  width: 100%;
 }
 
-.banner > div {
+#banner > div > div {
   min-height: 600px;
 }
 
-.banner > div > div {
-  min-height: 600px;
-}
-
-.image-color-overlay {
-  background-color: rgba(0, 0, 0, 0.75);
-}
-
-@media (min-width: 576px) {
-  .banner.image-color-overlay {
-    padding-top: 0;
-  }
-}
-
-.banner hr {
-  border-top: 5px solid #6c757d;
+#banner hr {
+  border-top: 5px solid;
   width: 65%;
 }
 
 .hr-accent {
-  border-top-color: #f77f00 !important;
+  border-top-color: var(--title-underline-color)!important;
 }
 
-#profile-pic {
-  border-radius: 50%;
+#about {
+  background-color: var(--about-background-color);
+  padding: 40px 0;
 }
 
-.content-section {
-  color: #fff;
-  min-height: 300px;
-  width: 100%;
-  padding: 3em 0;
+.heading-underline {
+  border-bottom: 5px solid var(--heading-underline-color);
 }
 
-@media (min-width: 576px) {
-  .content-section {
-    padding: 3em;
-  }
+.normal-text {
+  font-size: 20px;
+  font-weight: 600;
 }
 
-.content-section {
-  color: #fff;
-  min-height: 300px;
-  width: 100%;
+.section-boundary {
+  border-bottom: 2px solid var(--section-boundary-color);
 }
 
-.card {
-  min-height: 100%;
-  padding: 0;
-}
-
-.display-none-before-medium {
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .display-none-before-medium {
-    display: block;
-  }
-}
-
-.heading-hr {
-  border: 0;
-  border-top: 5px solid rgba(0, 0, 0, 0.1);
-  margin-top: -5px;
-}
-
-.check-li {
+#about ul {
   list-style: none;
-  padding-left: 1.5em;
 }
 
-.check-li li {
-  display: flex;
-  align-items: center;
+#about ul li:before {
+  content: '✓';
+  padding-right: 5px;
+  color: var(--list-tick-color);
+  font-size: larger;
 }
 
-.check-li li:before {
-  content: '\2713';
-  display: inline-block;
-  padding: 0 6px 0 0;
-  font-size: 26px;
-  color: #f77f00;
+#quote {
+  background-color: var(--header-background-primary-color);
+  color: var(--quote-color);
 }
 
-.bg-dark-secondary {
-  background-color: #1c1f1d!important;
+footer {
+  background-color: var(--footer-background);
+  color: var(--footer-color);
 }
 
-.page-footer {
-  border-top: 1px solid #f77f00;
-  color: #fff;
-  min-height: 100px;
-  align-items: center;
+.section-primary {
+  background-color: var(--section-background-primary-color);
 }
 
-.page-footer > div.container {
-  padding: 1em 0;
+.section-secondary {
+  background-color: var(--section-background-secondary-color);
 }
 
-.social-icons-list a {
-  filter: invert(88%) sepia(4%) saturate(99%) hue-rotate(155deg) brightness(96%) contrast(88%);
+.header-primary {
+  background-color: var(--header-background-primary-color);
 }
 
-.social-icons-list a img {
-  width: 25px;
+.header-secondary {
+  background-color: var(--header-background-secondary-color);
 }
 
-.color-secondary {
-  color: #fff;
+.post-list-grid {
+  min-height: 200px;
 }
 
-/* Code blocks in blog posts */
-div.highlight pre {
-  background-color: #312f25;
-  padding: 10px;
-  font-size: large;
+.post-list-grid a {
+  color: var(--post-list-link-color);
+  text-decoration: none;
 }
 
-/* Override the Boostrap Blockquote */
+.pagination a {
+  text-decoration: none;
+  color: var(--pagination-link-color);
+}
+
+.post-detail a {
+  text-decoration: none;
+  color: var(--post-detail-link-color);
+}
+
+.post-text {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.post-text .highlight pre{
+  background-color: var(--code-background-color);
+  font-size: 20px;
+  padding: 2rem;
+}
+
+.email-share-form a{
+  color: var(--email-share-form-link-color);
+  text-decoration: none;
+}
+
 blockquote {
     padding: 10px 20px;
     margin: 0 0 20px;
-    font-size: 17.5px;
-    border-left: 5px solid #868181;
+    font-size: 20px;
+    font-weight: 600;
+    border-left: 5px solid var(--blockquote-color);
 }
 
 blockquote > p {
     margin-bottom: 0;
-}
-
-.btn-app-custom {
-  color: #fff;
-  border-color: #f77f00;
-  background-color: #f77f00;
 }

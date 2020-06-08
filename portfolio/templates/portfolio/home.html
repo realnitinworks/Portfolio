@@ -9,7 +9,6 @@
 {% block banner_content %}
 <div class="col-sm-6 d-flex align-items-center justify-content-center">
     <div class="text-center">
-        <hr class="hr-accent">
         <h1 class="display-4">Nitin Cherian</h1>
         <h2>Programmer, Learner and Blogger</h2>
         <hr class="hr-accent">
@@ -17,7 +16,7 @@
 </div>
 <div class="col-sm-6 d-flex justify-content-center align-items-center">
     <picture>
-        <img src="{% static "assets/img/me.png" %}" class="img-fluid" id="profile-pic" alt="Picture of Me">
+        <img src="{% static "assets/img/me.png" %}" class="img-fluid rounded-circle shadow-lg" alt="Picture of Me">
     </picture>
 </div>
 {% endblock banner_content %}
@@ -26,66 +25,56 @@
 <!-- Page content sections -->
 {% block content %}
 
-<!-- Section 1-->
-<div class="content-section bg-dark d-flex justify-content-center">
+<!-- Section 1 -->
+<section id="about" class="section-boundary">
     <div class="container">
-        <div class="card bg-dark color-secondary">
-            <div class="row no-gutters">
-                <div class="col-md-4 display-none-before-medium">
-                    <picture><img class="img-fluid card-img" src="{% static "assets/img/python-code.jpeg" %}"
-                            style="background-color: rgba(0, 0, 0, 0.5);"></picture>
-                </div>
-                <div class="col-md-1 display-none-before-medium"></div>
-                <div class="col-md-7">
-                    <div class="card-body">
-                        <h5 class="card-title">About Me</h5>
-                        <hr class="heading-hr hr-accent mb-4 d-inline-block mx-auto" style="width: 60px;">
-                        <p class="card-text">
-                            I am Nitin George Cherian. Software Engineer and Blogger. I live in Bangalore
-                            with my wife and two lovely boys.
-                        </p>
-                        <p class="card-text">
-                            I love programming and the web. Python is my favourite language. Interested
-                            in distributed systems and concurrent systems.
-                        </p>
-                        <p class="card-text">
-                            During my free time, I do side projects, blog and polishes my skills in programming and
-                            design.
-                        </p>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <ul class="check-li">
-                                    <li>Python</li>
-                                    <li>C/C++</li>
-                                    <li>Django</li>
-                                    <li>Flask</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <ul class="check-li">
-                                    <li>Docker</li>
-                                    <li>Git</li>
-                                    <li>Pytest</li>
-                                    <li>Javascript</li>
-                                </ul>
-                            </div>
-                        </div>
+        <div class="row">
+            <div class="col-lg-6 d-none d-lg-block"><img class="img-fluid shadow-lg"
+                    src="{% static "assets/img/skills_list.jpeg" %}" style="height: 600px;"></div>
+            <div class="col-lg-6">
+                <h3 class="pb-2"><span class="heading-underline">About Me</span></h3>
+                <p class="text-left normal-text">I am Nitin George Cherian. Software Engineer and Blogger. I live in
+                    Bangalore&nbsp;with my wife and two lovely boys.</p>
+                <p class="text-left normal-text">I love programming and the web. Python is my favourite language.
+                    Interested&nbsp;in distributed systems and concurrent systems.</p>
+                <p class="text-left normal-text">During my free time, I do side projects, blog and polishes my
+                    skills in
+                    programming and&nbsp;design.</p>
+                <div class="row normal-text" style="padding-top: 41px;">
+                    <div class="col-lg-6">
+                        <ul>
+                            <li>Python</li>
+                            <li>C/C++</li>
+                            <li>Django</li>
+                            <li>Flask</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <ul>
+                            <li>Docker</li>
+                            <li>Git</li>
+                            <li>Pytest</li>
+                            <li>Javascript</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 <!-- Section 1 ends -->
 
-<!-- Section 2 -->
-<div class="content-section bg-dark-secondary d-flex justify-content-center">
-    <div class="row justify-content-center align-self-center text-center">
-        <div class="col-sm-12">
-            <h2 class="quote">Do one thing and do it well</h2>
+<!-- Section 2-->
+<section id="quote" class="section-boundary" style="height: 200px;">
+    <div class="container">
+        <div class="row align-items-center" style="height: 200px;">
+            <div class="col text-center"><i class="fa fa-quote-right shadow" style="font-size: 45px;"></i><span
+                    class="d-inline-block" style="font-size: 35px;padding-right: 10px;padding-left: 10px;">Do One
+                    Thing
+                    and Do It Well</span><i class="fa fa-quote-right shadow" style="font-size: 45px;"></i></div>
         </div>
     </div>
-</div>
+</section>
 <!-- Section 2 ends -->
 
 {% endblock content %}

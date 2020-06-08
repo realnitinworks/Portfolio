@@ -7,20 +7,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>{% block title %}RealNitinWorks{% endblock %}</title>
-    <script src="https://use.fontawesome.com/2a9b19b2de.js"></script>
     <link rel="stylesheet" href="{% static "assets/bootstrap/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+    <link rel="stylesheet" href="{% static "assets/fonts/font-awesome.min.css" %}">
     <link rel="stylesheet" href="{% static "assets/css/styles.css" %}">
-    <link rel="stylesheet" href="{% static "assets/css/monokai.css" %}">    
+    <link rel="stylesheet" href="{% static "assets/css/monokai.css" %}">
 </head>
 
-<body>
-
-    {% include "navbar.html" %}
+<body style="font-family: 'Roboto Mono', monospace;">
+    <!-- Navbar -->
+    {% include 'navbar.html'%}
 
     <!-- Banner with overlay below the Navbar -->
-    <div class="header banner pt-5 p-md-none">
+    <div id="banner" class="header pt-5 p-md-none section-boundary">
         <div class="row h-100">
-            <div class="col-md-12 d-flex h-100 image-color-overlay flex-column flex-sm-row">
+            <div class="col-md-12 d-flex h-100 flex-column flex-sm-row">
                 <!-- Dyanamic content on top of the banner -->
                 {% block banner_content %}
                 {% endblock banner_content %}
@@ -30,18 +31,16 @@
     </div>
     <!-- Banner ends -->
 
-    <!-- Page content sections -->
+    <!-- Sections -->
     {% block content %}
     {% endblock content %}
-    <!-- Page content ends-->
 
-    {% include "footer.html" %}
+    <!-- Footer -->
+    {% include 'footer.html' %}
 
-    <!-- Javascript files -->
+    <!-- Javascript libs -->
     <script src="{% static "assets/js/jquery.min.js" %}"></script>
     <script src="{% static "assets/bootstrap/js/bootstrap.min.js" %}"></script>
-    <!-- Javascript ends -->
-
 </body>
 
 </html>

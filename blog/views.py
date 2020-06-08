@@ -57,5 +57,5 @@ def post_share_by_email(request, post_id):
     return render(
         request,
         "blog/post/post_share_email.html",
-        {"form": form, "sent": sent, "post": post},
+        {"form": form, "sent": sent, "post": post, "active": "blog"},
     )

@@ -11,7 +11,6 @@
 {% block banner_content %}
 <div class="col d-flex align-items-center justify-content-center">
     <div class="text-center">
-        <hr class="hr-accent">
         <h1 class="display-5">Email '{{ post.title }}'</h1>
         <hr class="hr-accent">
     </div>
@@ -23,7 +22,7 @@
 {% block content %}
 
 <!-- Section 1-->
-<div class="content-section bg-dark d-flex justify-content-center">
+<div class="email-share-form p-5 d-flex justify-content-center normal-text section-primary">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -35,7 +34,7 @@
                 <form method="post">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <input class="btn btn-app-custom btn-block" type="submit" value="Send">
+                    <input class="btn btn-dark btn-block" type="submit" value="Send">
                 </form>
                 {% endif %}
                 <a class="mt-3 d-inline-block" href="{{ post.get_absolute_url }}">Back to Post</a>
@@ -45,14 +44,19 @@
 </div>
 <!-- Section 1 ends -->
 
-<!-- Section 2 -->
-<div class="content-section bg-dark-secondary d-flex justify-content-center">
-    <div class="row justify-content-center align-self-center text-center">
-        <div class="col-sm-12">
-            <h2 class="quote">If it's not difficult, it is not worth having</h2>
+<!-- Section 2-->
+<section id="quote" class="section-boundary" style="height: 200px;">
+    <div class="container">
+        <div class="row align-items-center" style="height: 200px;">
+            <div class="col text-center"><i class="fa fa-quote-right shadow" style="font-size: 45px;"></i><span
+                    class="d-inline-block" style="font-size: 35px;padding-right: 10px;padding-left: 10px;">
+                    If it's not difficult, it is not worth having</span><i class="fa fa-quote-right shadow"
+                    style="font-size: 45px;">
+                </i>
+            </div>
         </div>
     </div>
-</div>
+</section>
 <!-- Section 2 ends -->
 
 {% endblock content %}
