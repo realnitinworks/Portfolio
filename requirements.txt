@@ -1,4 +1,4 @@
-Django==3.0.5
+Django==3.0.7
 psycopg2-binary==2.8.5
 django-pagedown==2.0.3
 mistune==2.0.0a4
