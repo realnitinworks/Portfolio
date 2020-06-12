@@ -18,6 +18,9 @@
     <!-- Navbar -->
     {% include 'navbar.html'%}
 
+    <!-- Messages -->
+    {% include 'message.html' %}
+
     <!-- Banner with overlay below the Navbar -->
     <div id="banner" class="header pt-5 p-md-none section-boundary">
         <div class="row h-100">
@@ -41,6 +44,13 @@
     <!-- Javascript libs -->
     <script src="{% static "assets/js/jquery.min.js" %}"></script>
     <script src="{% static "assets/bootstrap/js/bootstrap.min.js" %}"></script>
+
+    <!-- jquery for bootstrap toasts -->
+    <script>
+        $(document).ready(function() {
+            $('.toast').toast('show');
+        });
+    </script>
 </body>
 
 </html>

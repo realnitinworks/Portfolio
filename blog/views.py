@@ -1,10 +1,11 @@
 import os
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.core.mail import send_mail
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.contrib import messages
 
 from .models import Post
-from .forms import PostEmailForm
-from django.core.mail import send_mail
+from .forms import PostEmailForm, PostCommentForm
 
 
 def post_list(request):
@@ -29,8 +30,38 @@ def post_detail(request, year, month, day, slug):
         Post, publish__year=year, publish__month=month, publish__day=day, slug=slug
     )
 
+    # Get all the active comments of this post
+    comments = post.comments.filter(active=True)
+
+    if request.method == "POST":
+        form = PostCommentForm(request.POST)
+        if form.is_valid():
+            # Create 'Comment' model instance backing the form
+            # but don't write to DB until for comment-post association
+            new_comment = form.save(commit=False)
+            # Associate post to the comment
+            new_comment.post = post
+            # Save to DB
+            new_comment.save()
+            # Message on successful submit
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                "Your comment is submitted"
+            )
+            # Redirect to this view
+            return redirect(to=post)
+    else:
+        form = PostCommentForm()
+
     return render(
-        request, "blog/post/post_detail.html", {"post": post, "active": "blog"}
+        request, "blog/post/post_detail.html",
+        {
+            "post": post,
+            "active": "blog",
+            'comments': comments,
+            'form': form,
+        }
     )
 
 

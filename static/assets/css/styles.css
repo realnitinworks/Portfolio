@@ -12,13 +12,17 @@
   --header-background-primary-color: var(--first-set-primary-color);
   --heading-underline-color: var(--first-set-primary-color);
   --list-tick-color: var(--first-set-primary-color);
-
+  --base-toast-background-color: var(--first-set-primary-color);
+  
   --second-set-primary-color: #d6d6d6;
   --second-set-secondary-color: #f0eaea;
   --title-underline-color: var(--second-set-primary-color);
   --about-background-color: var(--second-set-primary-color);
   --section-background-primary-color: var(--second-set-primary-color);
   --section-background-secondary-color: var(--second-set-secondary-color);
+  --comment-section-background-color: var(--second-set-secondary-color);
+  --odd-comment-background-color: var(--second-set-primary-color);
+  --even-comment-background-color: var(--comment-section-background-color);
 
   --third-set-primary-color: #f04216;
   --post-detail-link-color: var(--third-set-primary-color);
@@ -194,4 +198,22 @@ blockquote {
 
 blockquote > p {
     margin-bottom: 0;
+}
+
+#comment_section {
+  background-color: var(--comment-section-background-color);
+}
+
+.odd-comment {
+  background-color: var(--odd-comment-background-color);
+}
+
+.even-comment {
+  background-color: var(--even-comment-background-color);
+}
+
+.base-toast {
+  background-color: var(--base-toast-background-color)!important;
+  position: relative; 
+  min-height: 100px;
 }

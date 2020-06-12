@@ -3,6 +3,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load blog_tags %}
+{% load humanize %}
+{% load crispy_forms_tags %}
 
 {% block title %}
 {{ block.super }} - Blog - {{ post.title }}
@@ -33,16 +35,49 @@
 </div>
 <!-- Section 1 ends -->
 
-<!-- Section 2-->
+<!-- comments section -->
+
+<div id="comment_section" class="p-5">
+    <div class="container">
+        {% with comments.count as total_comments %}
+        {% if total_comments %}
+        <p class="text-right">{{ total_comments }} comment{{ total_comments|pluralize }}</p>
+        {% endif %}
+        {% endwith %}
+        <hr>
+
+        {% for comment in comments %}
+        <div class="{% cycle 'odd-comment' 'even-comment' %} p-2">
+            <span class="badge badge-success">#{{ forloop.counter }}</span>
+            <span class="badge badge-warning">{{ comment.name|title }}</span> said
+            <span class="badge badge-info">{{ comment.created|naturaltime }}</span>
+            <p>
+                {{ comment.body|linebreaks }}
+            </p>
+        </div>
+        {% endfor %}
+
+        <h3 class="mt-4">Leave a comment</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" class="btn btn-dark" value="Submit">
+        </form>
+    </div>
+</div>
+
+<!-- comments section ends -->
+
+<!-- Section 2 -->
 <section id="quote" class="section-boundary" style="height: 300px;">
     <div class="container">
         <div class="row align-items-center" style="height: 300px;">
             <div class="col text-center">
-                <span class="display-4 d-none d-md-inline-block"><i class="fa fa-quote-right shadow"></i></span>  
+                <span class="display-4 d-none d-md-inline-block"><i class="fa fa-quote-right shadow"></i></span>
                 <span class="d-inline-block display-4" style="padding-right: 10px;padding-left: 10px;">
                     Do One Thing and Do It Well
                 </span>
-                <span class="display-4 d-none d-md-inline-block"><i class="fa fa-quote-right shadow"></i></span>  
+                <span class="display-4 d-none d-md-inline-block"><i class="fa fa-quote-right shadow"></i></span>
             </div>
         </div>
     </div>
