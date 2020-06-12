@@ -212,6 +212,13 @@ blockquote > p {
   background-color: var(--even-comment-background-color);
 }
 
+.odd-comment .highlight pre, .even-comment .highlight pre{
+  background-color: var(--code-background-color)!important;
+  font-size: 20px;
+  margin: 1.5rem 1.5rem;
+  padding: 2rem;
+}
+
 .base-toast {
   background-color: var(--base-toast-background-color)!important;
   position: relative; 

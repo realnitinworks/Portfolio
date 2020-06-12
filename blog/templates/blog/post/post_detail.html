@@ -52,7 +52,7 @@
             <span class="badge badge-warning">{{ comment.name|title }}</span> said
             <span class="badge badge-info">{{ comment.created|naturaltime }}</span>
             <p>
-                {{ comment.body|linebreaks }}
+                {{ comment.body|markdown }}
             </p>
         </div>
         {% endfor %}
