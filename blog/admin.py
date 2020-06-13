@@ -14,6 +14,6 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class PostCommentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'active')
+    list_display = ('name', 'email', 'active', 'post', 'body')
     readonly_fields = ('created', 'updated')
     

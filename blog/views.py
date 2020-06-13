@@ -30,9 +30,6 @@ def post_detail(request, year, month, day, slug):
         Post, publish__year=year, publish__month=month, publish__day=day, slug=slug
     )
 
-    # Get all the active comments of this post
-    comments = post.comments.filter(active=True)
-
     if request.method == "POST":
         form = PostCommentForm(request.POST)
         if form.is_valid():
@@ -53,6 +50,18 @@ def post_detail(request, year, month, day, slug):
             return redirect(to=post)
     else:
         form = PostCommentForm()
+
+    # Get all the active comments of this post
+    all_comments = post.comments.filter(active=True)
+    comments_paginator = Paginator(all_comments, os.environ.get("COMMENTS_PER_PAGE", 6))
+    comments_page_number = request.GET.get("page")  # query string in url
+
+    try:
+        comments = comments_paginator.page(number=comments_page_number)
+    except PageNotAnInteger:
+        comments = comments_paginator.page(number=1)
+    except EmptyPage:
+        comments = comments_paginator.page(number=comments_paginator.num_pages)
 
     return render(
         request, "blog/post/post_detail.html",

@@ -1,0 +1,26 @@
+<!-- comments_pagination.html -->
+
+<div class="d-flex justify-content-between comments-pagination">
+    <div class="pl-2 pr-2 pb-1">
+        {% if page.has_previous %}
+        <a class="text-dark" href="?page={{ page.previous_page_number }}#comments_section">
+            <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+        </a>
+        {% else %}
+        <a class="text-muted disabled" aria-disabled="true" href="#comments_section">
+            <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+        </a>
+        {% endif %}
+    </div>
+    <div class="pl-2 pr-2 pb-1">
+        {% if page.has_next %}
+        <a class="text-dark" href="?page={{ page.next_page_number }}#comments_section">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a>
+        {% else %}
+        <a class="text-muted disabled" aria-disabled="true" href="#comments_section">
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a>
+        {% endif %}
+    </div>
+</div>

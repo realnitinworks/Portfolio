@@ -37,18 +37,25 @@
 
 <!-- comments section -->
 
-<div id="comment_section" class="p-5">
+<div id="comments_section" class="p-5">
     <div class="container">
-        {% with comments.count as total_comments %}
+
+        <!-- Total comments part -->
+        <!-- Important! - comments is a Django paginator object -->
+        {% with comments.paginator.count as total_comments %}
         {% if total_comments %}
         <p class="text-right">{{ total_comments }} comment{{ total_comments|pluralize }}</p>
         {% endif %}
         {% endwith %}
         <hr>
 
+        <!-- Comments -->
         {% for comment in comments %}
         <div class="{% cycle 'odd-comment' 'even-comment' %} p-2">
-            <span class="badge badge-success">#{{ forloop.counter }}</span>
+            <!-- https://docs.djangoproject.com/en/3.0/topics/pagination/ -->
+            <!-- https://docs.djangoproject.com/en/3.0/ref/templates/builtins/#for -->
+            <!-- Adding in for loop: https://stackoverflow.com/a/24912805/1220250-->
+            <span class="badge badge-success">#{{ forloop.counter0|add:comments.start_index }} </span>
             <span class="badge badge-warning">{{ comment.name|title }}</span> said
             <span class="badge badge-info">{{ comment.created|naturaltime }}</span>
             <p>
@@ -56,13 +63,23 @@
             </p>
         </div>
         {% endfor %}
+        <!-- Comments end -->
 
+        <!-- Pagination for the comments -->
+        {% if comments %}
+        <hr>
+        {% include 'comments_pagination.html' with page=comments %}
+        {% endif %}
+        <!-- Pagination for the comments ends -->
+
+        <!-- Form for submitting comments -->
         <h3 class="mt-4">Leave a comment</h3>
         <form method="post">
             {% csrf_token %}
             {{ form|crispy }}
             <input type="submit" class="btn btn-dark" value="Submit">
         </form>
+        <!-- Comment form ends -->
     </div>
 </div>
 

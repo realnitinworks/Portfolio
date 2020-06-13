@@ -20,7 +20,7 @@
   --about-background-color: var(--second-set-primary-color);
   --section-background-primary-color: var(--second-set-primary-color);
   --section-background-secondary-color: var(--second-set-secondary-color);
-  --comment-section-background-color: var(--second-set-secondary-color);
+  --comments-section-background-color: var(--second-set-secondary-color);
   --odd-comment-background-color: var(--second-set-primary-color);
   --even-comment-background-color: var(--comment-section-background-color);
 
@@ -200,8 +200,8 @@ blockquote > p {
     margin-bottom: 0;
 }
 
-#comment_section {
-  background-color: var(--comment-section-background-color);
+#comments_section {
+  background-color: var(--comments-section-background-color);
 }
 
 .odd-comment {
@@ -217,6 +217,10 @@ blockquote > p {
   font-size: 20px;
   margin: 1.5rem 1.5rem;
   padding: 2rem;
+}
+
+.comments-pagination a{
+  font-size: 2rem;
 }
 
 .base-toast {
