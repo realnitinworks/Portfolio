@@ -1,0 +1,11 @@
+<!-- blog/post/latest_posts.html -->
+
+<ul>
+    {% for post in latest_posts %}
+    <li>
+        <p>
+            <a class="text-warning" href="{{ post.get_absolute_url }}">{{ post }}</a>
+        </p>
+    </li>
+    {% endfor %}
+</ul>

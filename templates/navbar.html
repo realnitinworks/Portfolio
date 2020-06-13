@@ -1,3 +1,7 @@
+<!-- navbar.html-->
+{% load blog_tags %}
+
+
 <!-- Navbar -->
 <nav class="navbar navbar-light navbar-expand-md section-boundary">
     <div class="container">
@@ -25,7 +29,7 @@
                 <li class="nav-item" role="presentation">
                     <a class="nav-link text-white  {% if active == "blog" %} shadow-lg text-dark {% endif %}"
                         href="{% url "blog:post_list" %}">
-                        Blog
+                        Blog <span class="badge badge-primary">{% total_posts %}</span>
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">

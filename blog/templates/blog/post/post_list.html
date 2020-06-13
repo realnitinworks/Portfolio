@@ -2,6 +2,7 @@
 
 {% extends 'base.html' %}
 {% load static %}
+{% load blog_tags %}
 
 {% block title %}
 {{ block.super }} - Blog Posts
@@ -12,6 +13,7 @@
 <div class="col-sm-12 d-flex align-items-center justify-content-center">
     <div class="text-center">
         <h1 class="display-4">My Blog</h1>
+        <h4>The Blog has <span class="badge badge-primary">{% total_posts %}</span> posts</h4>
         <hr class="hr-accent">
     </div>
 </div>
@@ -22,25 +24,61 @@
 {% block content %}
 
 <!-- Section 1-->
-{% for post in posts %}
-<div class="{% cycle 'section-primary' 'section-secondary' %} shadow-lg p-5">
-    <div class="container">
-        <div class="row post-list-grid d-flex align-items-center flex-wrap">
-            <div class="col-12 normal-text">
-                <a href="{{ post.get_absolute_url }}">
-                    <h2>{{ post.title }}</h2>
-                    <p class="text-info">{{ post.summary }}</p>
-                    <div class="text-success">Author: {{ post.author|title }} | {{ post.publish|date:"M d, Y" }}</div>
-                </a>
+<div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Post list -->
+            <div class="col-12 col-lg-9 section-primary h-100">
+                <div class="row">
+                    {% for post in posts %}
+                    <div
+                        class="post-list-grid col-12 normal-text {% cycle 'section-primary' 'section-secondary' %} shadow-lg p-5">
+                        <a href="{{ post.get_absolute_url }}">
+                            <h2>{{ post.title }}</h2>
+                            <p class="text-info">{{ post.summary }}</p>
+                            <div class="text-success">
+                                Author: <span class="badge badge-warning">
+                                    {{ post.author|title }}
+                                </span> | <span class="badge badge-info">{{ post.publish|date:"M d, Y" }}
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
-        </div>
+            <!-- Post list ends -->
 
+            <!-- Blog stats Sidebar -->
+            <div class="col-12 col-lg-3 normal-text text-white post-list-sidebar">
+                <h1 class="display-5 text-center p-3">Blog Stats</h1>
+                <hr class="hr-accent">
+                <div class="p-3">
+                    <h3 class="mt-4">Latest Posts</h3>
+                    {% show_latest_posts 3 %}
+                </div>
+                <div class="mt-3 p-3">
+                    <h3 class="mt-4">Most Commented Posts</h3>
+                    {% get_most_commented_posts 3 as most_commented_posts %}
+                    <ul>
+                        {% for post in most_commented_posts %}
+                        <li>
+                            <p>
+                                <a class="text-info" href="{{ post.get_absolute_url }}">{{ post }}</a>
+                                <span class="badge badge-success">{% total_active_comments post %}</span>
+                            </p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <!-- Blog stats sidebar ends -->
+        </div>
     </div>
 </div>
-{% endfor %}
 
 <!-- Pagination links -->
-<div class="header-secondary section-boundary">
+<div class="section-primary section-boundary">
     <div class="container p-5">
         {% include 'pagination.html' with page=posts next="Older Posts" previous="Newer Posts"%}
     </div>
@@ -53,11 +91,11 @@
     <div class="container">
         <div class="row align-items-center" style="height: 300px;">
             <div class="col text-center">
-                <span class="display-4 d-none d-md-inline-block"><i class="fa fa-quote-right shadow"></i></span>  
+                <span class="display-4 d-none d-md-inline-block"><i class="fa fa-quote-right shadow"></i></span>
                 <span class="d-inline-block display-4" style="padding-right: 10px;padding-left: 10px;">
                     Do One Thing and Do It Well
                 </span>
-                <span class="display-4 d-none d-md-inline-block"><i class="fa fa-quote-right shadow"></i></span>  
+                <span class="display-4 d-none d-md-inline-block"><i class="fa fa-quote-right shadow"></i></span>
             </div>
         </div>
     </div>
