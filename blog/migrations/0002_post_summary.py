@@ -6,14 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0001_initial'),
+        ("blog", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='post',
-            name='summary',
-            field=models.CharField(default='Summary of the post', max_length=500),
+            model_name="post",
+            name="summary",
+            field=models.CharField(default="Summary of the post", max_length=500),
             preserve_default=False,
         ),
     ]

@@ -1,8 +1,7 @@
 from django import forms
-
 from pagedown.widgets import AdminPagedownWidget
 
-from .models import Post, Comment
+from .models import Comment, Post
 
 
 class PostAdminForm(forms.ModelForm):
@@ -34,4 +33,4 @@ class PostEmailForm(forms.Form):
 class PostCommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('name', 'email', 'body')
+        fields = ("name", "email", "body")

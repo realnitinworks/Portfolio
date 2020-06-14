@@ -20,12 +20,12 @@ class HighlightRenderer(mistune.HTMLRenderer):
             lexer = get_lexer_by_name(lang, stripall=True)
             formatter = html.HtmlFormatter()
             return highlight(code, lexer, formatter)
-        return f'<pre><code>{mistune.escape(code)}</code></pre>'
+        return f"<pre><code>{mistune.escape(code)}</code></pre>"
 
 
 @register.filter(name="markdown")
 def markdown_format(text):
-    plugins = [DirectiveToc(), 'url', 'footnotes']
+    plugins = [DirectiveToc(), "url", "footnotes"]
     renderer = HighlightRenderer()
     markdown = mistune.create_markdown(renderer=renderer, plugins=plugins)
     return mark_safe(markdown(text))
@@ -47,11 +47,13 @@ def show_latest_posts(count=3):
 @register.simple_tag
 def get_most_commented_posts(count=3):
     # https://docs.djangoproject.com/en/3.0/topics/db/aggregation/#cheat-sheet
-    # We want group posts and order them by the total number of active comments. 
-    total_active_comments = Count('comments', filter=Q(comments__active=True))
-    return Post.published.annotate(
-        total_comments=total_active_comments
-    ).order_by('-total_comments').filter(total_comments__gt=0)[:count]
+    # We want group posts and order them by the total number of active comments.
+    total_active_comments = Count("comments", filter=Q(comments__active=True))
+    return (
+        Post.published.annotate(total_comments=total_active_comments)
+        .order_by("-total_comments")
+        .filter(total_comments__gt=0)[:count]
+    )
 
 
 @register.simple_tag

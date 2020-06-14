@@ -1,11 +1,12 @@
 import os
-from django.shortcuts import render, get_object_or_404, redirect
-from django.core.mail import send_mail
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.contrib import messages
 
+from django.contrib import messages
+from django.core.mail import send_mail
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.shortcuts import get_object_or_404, redirect, render
+
+from .forms import PostCommentForm, PostEmailForm
 from .models import Post
-from .forms import PostEmailForm, PostCommentForm
 
 
 def post_list(request):
@@ -41,11 +42,7 @@ def post_detail(request, year, month, day, slug):
             # Save to DB
             new_comment.save()
             # Message on successful submit
-            messages.add_message(
-                request,
-                messages.SUCCESS,
-                "Your comment is submitted"
-            )
+            messages.add_message(request, messages.SUCCESS, "Your comment is submitted")
             # Redirect to this view
             return redirect(to=post)
     else:
@@ -64,13 +61,9 @@ def post_detail(request, year, month, day, slug):
         comments = comments_paginator.page(number=comments_paginator.num_pages)
 
     return render(
-        request, "blog/post/post_detail.html",
-        {
-            "post": post,
-            "active": "blog",
-            'comments': comments,
-            'form': form,
-        }
+        request,
+        "blog/post/post_detail.html",
+        {"post": post, "active": "blog", "comments": comments, "form": form},
     )
 
 
