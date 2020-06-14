@@ -51,7 +51,7 @@ def get_most_commented_posts(count=3):
     total_active_comments = Count('comments', filter=Q(comments__active=True))
     return Post.published.annotate(
         total_comments=total_active_comments
-    ).order_by('-total_comments')[:count]
+    ).order_by('-total_comments').filter(total_comments__gt=0)[:count]
 
 
 @register.simple_tag
