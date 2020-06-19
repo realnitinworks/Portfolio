@@ -1,0 +1,45 @@
+# Pull official base image
+FROM python:3.8.2-alpine
+
+# Seet work directory
+WORKDIR /usr/src/app
+
+# Seet environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+ENV DEBUG 0
+ARG SECRET_KEY
+ENV SECRET_KEY $SECRET_KEY
+ENV DJANGO_ALLOWED_HOSTS .herokuapp.com
+
+ENV EMAIL_HOST_USER apikey
+ARG EMAIL_HOST_PASSWORD
+ENV EMAIL_HOST_PASSWORD $EMAIL_HOST_PASSWORD
+ARG EMAIL_SENDER_EMAIL
+ENV EMAIL_SENDER_EMAIL $EMAIL_SENDER_EMAIL
+
+ENV POSTS_PER_PAGE 6
+ENV COMMENTS_PER_PAGE 10
+
+# Install psycopg2 dependencies
+RUN apk update \
+    && apk add postgresql-dev gcc python3-dev musl-dev
+
+# Install dependencies
+RUN pip install --upgrade pip
+COPY ./requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+
+# Copy project
+COPY . .
+
+# Collect static files
+RUN python manage.py collectstatic --noinput
+
+# Add and run as non-root user
+RUN adduser -D myuser
+USER myuser
+
+# Run gunicorn
+CMD gunicorn portfolio_project.wsgi:application --bind 0.0.0.0:$PORT
