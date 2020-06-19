@@ -56,6 +56,9 @@ deploy:
     - docker build
         --tag $HEROKU_REGISTRY_IMAGE
         --file ./Dockerfile.prod
+        --build-arg SECRET_KEY=$SECRET_KEY 
+        --build-arg EMAIL_HOST_PASSWORD=$EMAIL_HOST_PASSWORD
+        --build-arg EMAIL_SENDER_EMAIL=$EMAIL_SENDER_EMAIL
         "."
     - docker login -u _ -p $HEROKU_AUTH_TOKEN registry.heroku.com
     - docker push $HEROKU_REGISTRY_IMAGE
