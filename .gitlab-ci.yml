@@ -21,7 +21,9 @@ build:
         --cache-from $IMAGE:latest
         --tag $IMAGE:latest
         --file ./Dockerfile.prod
-        --build-arg SECRET_KEY=$SECRET_KEY
+        --build-arg SECRET_KEY=$SECRET_KEY 
+        --build-arg EMAIL_HOST_PASSWORD=$EMAIL_HOST_PASSWORD
+        --build-arg EMAIL_SENDER_EMAIL=$EMAIL_SENDER_EMAIL
         "."
     - docker push $IMAGE:latest
 
