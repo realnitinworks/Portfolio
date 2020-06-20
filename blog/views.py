@@ -4,13 +4,21 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404, redirect, render
+from taggit.models import Tag
 
 from .forms import PostCommentForm, PostEmailForm
 from .models import Post
 
 
-def post_list(request):
+def post_list(request, tag_slug=None):
     all_posts = Post.published.all()
+
+    tag = None
+    if tag_slug:
+        # Filter posts based on tag_slug input
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        all_posts = all_posts.filter(tags__in=[tag])
+
     paginator = Paginator(all_posts, os.environ.get("POSTS_PER_PAGE", 3))
     page_number = request.GET.get("page")  # query string in url
 
@@ -22,7 +30,7 @@ def post_list(request):
         posts = paginator.page(number=paginator.num_pages)  # last page
 
     return render(
-        request, "blog/post/post_list.html", {"posts": posts, "active": "blog"}
+        request, "blog/post/post_list.html", {"all_posts": all_posts, "posts": posts, "active": "blog", "tag": tag}
     )
 
 

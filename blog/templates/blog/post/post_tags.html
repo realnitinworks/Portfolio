@@ -1,0 +1,8 @@
+<!-- blog/post/post_tags.html -->
+<div class="mt-2 mb-2">
+    {% for tag in tags %}
+    <a class="tag-link" href="{% url "blog:post_list_by_tag" tag.slug %}">
+        <span class="badge badge-primary">{{ tag.name }}</span>
+    </a>
+    {% endfor %}
+</div>

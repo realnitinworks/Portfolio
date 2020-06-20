@@ -59,3 +59,20 @@ def get_most_commented_posts(count=3):
 @register.simple_tag
 def total_active_comments(post):
     return post.comments.filter(active=True).count()
+
+
+@register.inclusion_tag("blog/post/post_tags.html")
+def post_tags(post):
+    tags = post.tags.all()
+    return {
+        "tags": tags,
+    }
+
+
+@register.simple_tag
+def popular_tags(min_count=5, N=10):
+    """ Return the 'N' tags that is used atleat 'min_count' times."""
+    # https://github.com/jazzband/django-taggit/issues/203#issue-28636008
+    # https://github.com/jazzband/django-taggit/blob/master/taggit/managers.py
+    # The queryset is annotated by 'num_times' -- number of times the tags is used.
+    return Post.tags.most_common(min_count=min_count)[:N]

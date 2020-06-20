@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     # 3rd-party apps
     "pagedown.apps.PagedownConfig",
     "crispy_forms",
+    "taggit",
     # local apps
     "portfolio.apps.PortfolioConfig",
     "blog.apps.BlogConfig",
@@ -162,3 +163,8 @@ EMAIL_USE_TLS = True
 
 # BOOTSTRAP FORMS
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+
+# CASE INSENSITIVE TAGS
+# https://django-taggit.readthedocs.io/en/latest/getting_started.html
+TAGGIT_CASE_INSENSITIVE = True

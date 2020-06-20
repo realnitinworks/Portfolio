@@ -17,6 +17,7 @@
         <h1 class="display-4">{{ post.title }}</h1>
         <h2>{{ post.summary }}</h2>
         <p>Author: {{ post.author|title }} | Published: {{ post.publish|date:"D, d M, Y" }}</p>
+        {% post_tags post %} <!-- Inclusion tag for tags display -->
         <hr class="hr-accent">
     </div>
 </div>
@@ -41,7 +42,7 @@
     <div class="container">
 
         <!-- Total comments part -->
-        <!-- Important! - comments is a Django paginator object -->
+        <!-- Important! - comments is a Django Page object -->
         {% with comments.paginator.count as total_comments %}
         {% if total_comments %}
         <p class="text-right">{{ total_comments }} comment{{ total_comments|pluralize }}</p>
