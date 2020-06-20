@@ -30,7 +30,9 @@ def post_list(request, tag_slug=None):
         posts = paginator.page(number=paginator.num_pages)  # last page
 
     return render(
-        request, "blog/post/post_list.html", {"all_posts": all_posts, "posts": posts, "active": "blog", "tag": tag}
+        request,
+        "blog/post/post_list.html",
+        {"all_posts": all_posts, "posts": posts, "active": "blog", "tag": tag},
     )
 
 
