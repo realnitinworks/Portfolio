@@ -5,7 +5,8 @@
   --footer-background: var(--black-color);
   --post-list-link-color: var(--black-color);
   --pagination-link-color: var(--black-color);
-   --post-list-sidebar-background-color: var(--black-color);
+  --post-list-sidebar-background-color: var(--black-color);
+  --similar-posts-background-color: var(--black-color);
 
   --first-set-primary-color: #cc1e48cf;
   --first-set-secondary-color: #ce3d5fcf;
@@ -246,4 +247,8 @@ a.tag-link {
 a.tag-link:hover {
   text-decoration: None;
   color: var(--first-set-primary-color);
+}
+
+.similar-posts {
+  background-color: var(--similar-posts-background-color);
 }

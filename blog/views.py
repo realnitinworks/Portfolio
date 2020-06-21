@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404, redirect, render
+from django.db.models import Count
 from taggit.models import Tag
 
 from .forms import PostCommentForm, PostEmailForm
@@ -70,10 +71,25 @@ def post_detail(request, year, month, day, slug):
     except EmptyPage:
         comments = comments_paginator.page(number=comments_paginator.num_pages)
 
+    # Get similar posts by tags
+    tags = post.tags.all()
+    similar_posts = (
+        Post.published.filter(tags__in=tags)
+        .exclude(id=post.id)
+        .annotate(same_tags=Count("tags"))
+        .order_by("-same_tags", "-publish")[: os.environ.get("MAX_SIMILAR_POSTS", 2)]
+    )
+
     return render(
         request,
         "blog/post/post_detail.html",
-        {"post": post, "active": "blog", "comments": comments, "form": form},
+        {
+            "post": post,
+            "active": "blog",
+            "comments": comments,
+            "form": form,
+            "similar_posts": similar_posts,
+        },
     )
 
 

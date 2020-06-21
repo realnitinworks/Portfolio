@@ -1,0 +1,134 @@
+diff --git a/Dockerfile.prod b/Dockerfile.prod
+index 01d0e95..394e04b 100644
+--- a/Dockerfile.prod
++++ b/Dockerfile.prod
+@@ -56,6 +56,7 @@ ENV EMAIL_SENDER_EMAIL $EMAIL_SENDER_EMAIL
+ 
+ ENV POSTS_PER_PAGE 6
+ ENV COMMENTS_PER_PAGE 10
++ENV MAX_SIMILAR_POSTS 3
+ 
+ # Install psycopg2 dependencies
+ RUN apk update \
+diff --git a/blog/templates/blog/post/post_detail.html b/blog/templates/blog/post/post_detail.html
+index 6a7cefb..e79b7d6 100644
+--- a/blog/templates/blog/post/post_detail.html
++++ b/blog/templates/blog/post/post_detail.html
+@@ -17,7 +17,8 @@
+         <h1 class="display-4">{{ post.title }}</h1>
+         <h2>{{ post.summary }}</h2>
+         <p>Author: {{ post.author|title }} | Published: {{ post.publish|date:"D, d M, Y" }}</p>
+-        {% post_tags post %} <!-- Inclusion tag for tags display -->
++        {% post_tags post %}
++        <!-- Inclusion tag for tags display -->
+         <hr class="hr-accent">
+     </div>
+ </div>
+@@ -38,7 +39,7 @@
+ 
+ <!-- comments section -->
+ 
+-<div id="comments_section" class="p-5">
++<div id="comments_section" class="p-5 section-boundary">
+     <div class="container">
+ 
+         <!-- Total comments part -->
+@@ -86,7 +87,27 @@
+ 
+ <!-- comments section ends -->
+ 
+-<!-- Section 2 -->
++<!-- Section 2: Similar posts -->
++<div class="similar-posts text-left normal-text section-boundary">
++    <div class="container p-5">
++        <h3 class="text-white">Similar Posts</h3>
++        <hr class="hr-accent">
++        <ul class="text-white">
++            {% for post in similar_posts %}
++            <li>
++                <p>
++                    <a class="text-success" href="{{ post.get_absolute_url }}">
++                        {{ post }}
++                    </a>
++                </p>
++            </li>
++            {% endfor %}
++        </ul>
++    </div>
++</div>
++<!-- Section 2 ends-->
++
++<!-- Section 3 -->
+ <section id="quote" class="section-boundary" style="height: 300px;">
+     <div class="container">
+         <div class="row align-items-center" style="height: 300px;">
+@@ -100,6 +121,6 @@
+         </div>
+     </div>
+ </section>
+-<!-- Section 2 ends -->
++<!-- Section 3 ends -->
+ 
+ {% endblock content %}
+\ No newline at end of file
+diff --git a/blog/views.py b/blog/views.py
+index e4a771d..3acbc42 100644
+--- a/blog/views.py
++++ b/blog/views.py
+@@ -4,6 +4,7 @@ from django.contrib import messages
+ from django.core.mail import send_mail
+ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+ from django.shortcuts import get_object_or_404, redirect, render
++from django.db.models import Count
+ from taggit.models import Tag
+ 
+ from .forms import PostCommentForm, PostEmailForm
+@@ -70,10 +71,25 @@ def post_detail(request, year, month, day, slug):
+     except EmptyPage:
+         comments = comments_paginator.page(number=comments_paginator.num_pages)
+ 
++    # Get similar posts by tags
++    tags = post.tags.all()
++    similar_posts = (
++        Post.published.filter(tags__in=tags)
++        .exclude(id=post.id)
++        .annotate(same_tags=Count("tags"))
++        .order_by("-same_tags", "-publish")[: os.environ.get("MAX_SIMILAR_POSTS", 2)]
++    )
++
+     return render(
+         request,
+         "blog/post/post_detail.html",
+-        {"post": post, "active": "blog", "comments": comments, "form": form},
++        {
++            "post": post,
++            "active": "blog",
++            "comments": comments,
++            "form": form,
++            "similar_posts": similar_posts,
++        },
+     )
+ 
+ 
+diff --git a/static/assets/css/styles.css b/static/assets/css/styles.css
+index 2978552..c136f7a 100644
+--- a/static/assets/css/styles.css
++++ b/static/assets/css/styles.css
+@@ -5,7 +5,8 @@
+   --footer-background: var(--black-color);
+   --post-list-link-color: var(--black-color);
+   --pagination-link-color: var(--black-color);
+-   --post-list-sidebar-background-color: var(--black-color);
++  --post-list-sidebar-background-color: var(--black-color);
++  --similar-posts-background-color: var(--black-color);
+ 
+   --first-set-primary-color: #cc1e48cf;
+   --first-set-secondary-color: #ce3d5fcf;
+@@ -247,3 +248,7 @@ a.tag-link:hover {
+   text-decoration: None;
+   color: var(--first-set-primary-color);
+ }
++
++.similar-posts {
++  background-color: var(--similar-posts-background-color);
++}
