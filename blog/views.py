@@ -73,11 +73,12 @@ def post_detail(request, year, month, day, slug):
 
     # Get similar posts by tags
     tags = post.tags.all()
+    # post_tags_ids = post.tags.values_list('id', flat=True)
     similar_posts = (
         Post.published.filter(tags__in=tags)
         .exclude(id=post.id)
         .annotate(same_tags=Count("tags"))
-        .order_by("-same_tags", "-publish")[: os.environ.get("MAX_SIMILAR_POSTS", 2)]
+        .order_by("-same_tags", "-publish")[:3]
     )
 
     return render(
