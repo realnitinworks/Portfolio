@@ -3,8 +3,8 @@ import os
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.shortcuts import get_object_or_404, redirect, render
 from django.db.models import Count
+from django.shortcuts import get_object_or_404, redirect, render
 from taggit.models import Tag
 
 from .forms import PostCommentForm, PostEmailForm
