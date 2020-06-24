@@ -43,6 +43,9 @@ if not DEBUG:
     SECURE_REFERRER_POLICY = "same-origin"
 
 
+SITE_ID = 1
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -53,6 +56,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
     # 3rd-party apps
     "pagedown.apps.PagedownConfig",
     "crispy_forms",
