@@ -8,8 +8,8 @@
   --post-list-sidebar-background-color: var(--black-color);
   --similar-posts-background-color: var(--black-color);
 
-  --first-set-primary-color: #cc1e48cf;
-  --first-set-secondary-color: #ce3d5fcf;
+  --first-set-primary-color: #3d3d3d;
+  --first-set-secondary-color: #393939;
   --header-background-secondary-color: var(--first-set-secondary-color);
   --header-background-primary-color: var(--first-set-primary-color);
   --heading-underline-color: var(--first-set-primary-color);

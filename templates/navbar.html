@@ -1,7 +1,6 @@
 <!-- navbar.html-->
 {% load blog_tags %}
 
-
 <!-- Navbar -->
 <nav class="navbar navbar-light navbar-expand-md section-boundary">
     <div class="container">
@@ -15,25 +14,24 @@
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link text-white {% if active == "home" %} shadow-lg text-dark {% endif %}"
+                    <a class="nav-link text-white {% if active == "home" %} shadow-lg {% endif %}"
                         href="{% url "portfolio:home" %}">
                         Home
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link text-white  {% if active == "portfolio" %} shadow-lg text-dark {% endif %}"
-                        href="#">
+                    <a class="nav-link text-white  {% if active == "portfolio" %} shadow-lg {% endif %}" href="#">
                         Portfolio
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link text-white  {% if active == "blog" %} shadow-lg text-dark {% endif %}"
+                    <a class="nav-link text-white  {% if active == "blog" %} shadow-lg {% endif %}"
                         href="{% url "blog:post_list" %}">
                         Blog <span class="badge badge-primary">{% total_posts %}</span>
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link text-white  {% if active == "feeds" %} shadow-lg text-dark {% endif %}" href="#">
+                    <a class="nav-link text-white  {% if active == "feeds" %} shadow-lg {% endif %}" href="#">
                         Feeds
                     </a>
                 </li>
