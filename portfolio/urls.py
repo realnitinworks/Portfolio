@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import home, feed
+from .views import feed, home
 
 app_name = "portfolio"
 
