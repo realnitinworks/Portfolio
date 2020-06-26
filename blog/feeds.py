@@ -13,7 +13,7 @@ class CustomPostsFeedGenerator(Rss201rev2Feed):
     # https://docs.djangoproject.com/en/3.0/ref/contrib/syndication/#custom-feed-generators
     def add_item_elements(self, handler, item):
         super().add_item_elements(handler, item)
-        handler.addQuickElement("publish_date", item['publish_date'])
+        handler.addQuickElement("publish_date", item["publish_date"])
 
 
 class PostsFeed(Feed):
@@ -31,8 +31,10 @@ class PostsFeed(Feed):
         if not count:
             return Post.published.all()
 
-        # Modify top level description if only a given number of posts are requested.   
-        self.description = f"A collection of the {count} latest posts written on the blog."
+        # Modify top level description if only a given number of posts are requested.
+        self.description = (
+            f"A collection of the {count} latest posts written on the blog."
+        )
         return Post.published.all()[:count]
 
     # https://docs.djangoproject.com/en/3.0/ref/contrib/syndication/#a-complex-example
