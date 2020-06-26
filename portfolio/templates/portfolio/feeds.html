@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ block.super }} - Feeds
+{% endblock title %}
+
+<!-- Dynamic content on banner overlay -->
+{% block banner_content %}
+<div class="col-sm-12 d-flex align-items-center justify-content-center">
+    <div class="text-center">
+        <h1 class="display-4">Feeds</h1>
+        <h4>Subscribe to feeds here</h4>
+        <hr class="hr-accent">
+    </div>
+</div>
+{% endblock banner_content %}
+<!-- Dynamic content on banner overlay ends -->
+
+<!-- Page content sections -->
+{% block content %}
+
+<!-- Section 1 -->
+<section id="feeds" class="section-boundary normal-text p-5">
+    <div class="container">
+        <h3 class="mb-4">The following feeds are available.</h3>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item mb-2">
+                <span class="badge badge-primary p-2">All Blog Posts</span> -
+                <a href="{% url 'blog:posts_feeds' %}">{% url 'blog:posts_feeds' %}</a>
+            </li>
+            <li class="list-group-item mb-2">
+                <span class="badge badge-primary p-2">10 Latest Blog Posts</span> -
+                <a href="{% url 'blog:latest_posts_feeds' 10 %}">{% url 'blog:latest_posts_feeds' 10 %}</a>
+            </li>
+        </ul>
+    </div>
+</section>
+<!-- Section 1 ends -->
+
+{% endblock content %}
+<!-- Page content ends -->

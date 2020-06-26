@@ -30,6 +30,7 @@
   --post-detail-link-color: var(--third-set-primary-color);
   --section-boundary-color: var(--third-set-primary-color);
   --email-share-form-link-color: var(--third-set-primary-color);
+  --feeds-link-color: var(--third-set-primary-color);
 
   --fourth-set-primary-color: #4d4948;
   --blockquote-color: var(--fourth-set-primary-color);
@@ -251,4 +252,13 @@ a.tag-link:hover {
 
 .similar-posts {
   background-color: var(--similar-posts-background-color);
+}
+
+#feeds{
+  min-height: 200px;
+  background-color: var(--second-set-primary-color);
+}
+
+#feeds a {
+  color: var(--feeds-link-color);
 }
