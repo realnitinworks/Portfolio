@@ -1,0 +1,83 @@
+<!-- search/search.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+{% load blog_tags %}
+
+{% block title %}
+{{ block.super }} - Search Results
+{% endblock title %}
+
+<!-- Dynamic content on banner overlay -->
+{% block banner_content %}
+<div class="col-sm-12 d-flex align-items-center justify-content-center">
+    <div class="text-center">
+        {% if query %}
+        <!-- Banner text for search results header -->
+        <h1>
+            Search Results for <span class="badge badge-success">"{{ query }}"</span>
+        </h1>
+        {% with page.paginator.count as total_results %}
+        <h4>Found <span class="badge badge-primary">{{ total_results }}</span> result{{ total_results|pluralize }}</h4>
+        {% endwith %}
+        <hr class="hr-accent">
+        {% else %}
+        <h1>You did not enter a query</h1>
+        {% endif %}
+    </div>
+</div>
+{% endblock banner_content %}
+<!-- Dynamic content on banner overlay ends -->
+
+<!-- Page content sections -->
+{% block content %}
+
+{% with page.paginator.count as total_results %}
+{% if total_results %}
+<!-- Section 1-->
+<div id="search-results" class="similar-posts text-left normal-text section-boundary">
+    <div class="container p-5">
+        <h3 class="text-white">Results</h3>
+        <hr class="hr-accent">
+        <ul class="text-white">
+            {% for result in page.object_list %}
+            <li>
+                <p>
+                    <a class="text-success" href="{{ result.object.get_absolute_url }}">
+                        {{ result.object.title }}
+                    </a>
+                </p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<!-- Pagination links -->
+<div class="section-primary section-boundary">
+    <div class="container p-5">
+        {% include 'pagination.html' with page=page query=query next=">>" previous="<<"%}
+    </div>
+</div>
+<!-- Pagination ends -->
+<!-- Section 1 ends -->
+{% endif %}
+{% endwith %}
+
+<!-- Section 2-->
+<section id="quote" class="section-boundary" style="height: 300px;">
+    <div class="container">
+        <div class="row align-items-center" style="height: 300px;">
+            <div class="col text-center">
+                <span class="display-4 d-none d-md-inline-block"><i class="fa fa-quote-right shadow"></i></span>
+                <span class="d-inline-block display-4" style="padding-right: 10px;padding-left: 10px;">
+                    Do One Thing and Do It Well
+                </span>
+                <span class="display-4 d-none d-md-inline-block"><i class="fa fa-quote-right shadow"></i></span>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section 2 ends -->
+
+{% endblock content %}

@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     "pagedown.apps.PagedownConfig",
     "crispy_forms",
     "taggit",
+    "haystack",
     # local apps
     "portfolio.apps.PortfolioConfig",
     "blog.apps.BlogConfig",
@@ -173,3 +174,13 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 # CASE INSENSITIVE TAGS
 # https://django-taggit.readthedocs.io/en/latest/getting_started.html
 TAGGIT_CASE_INSENSITIVE = True
+
+
+# Full-text search
+HAYSTACK_CONNECTIONS = {
+    "default": {
+        "ENGINE": "haystack.backends.whoosh_backend.WhooshEngine",
+        "PATH": os.path.join(os.path.dirname(__file__), "whoosh_index"),
+    },
+}
+# HAYSTACK_SEARCH_RESULTS_PER_PAGE = 3

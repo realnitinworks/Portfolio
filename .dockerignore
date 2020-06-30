@@ -3,4 +3,4 @@
 .dockerignore
 Dockerfile
 Dockerfile.prod
-
+whoosh_index

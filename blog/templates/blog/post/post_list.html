@@ -18,11 +18,11 @@
         <h1 class="display-4">Posts tagged with
             <span class="badge badge-success">
                 <a class="tag-link" href="{% url "blog:post_list_by_tag" tag.slug %}">
-                    {{ tag.name }}
+                    "{{ tag.name }}"
                 </a>
             </span>
         </h1>
-        {% with all_posts.count as posts_count %}
+        {% with posts.paginator.count as posts_count %}
         <!-- All the posts passed into this template have this tag irrespective of pagination -->
         <h4>Found <span class="badge badge-primary">{{ posts_count }}</span> post{{ posts_count|pluralize }}</h4>
         {% endwith %}

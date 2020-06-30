@@ -3,8 +3,8 @@
 
 <!-- Navbar -->
 <nav class="navbar navbar-light navbar-expand-md section-boundary">
-    <div class="container">
-        <a class="navbar-brand text-white" href="{% url "portfolio:home" %}" style="font-size: 24px;">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white ml-5" href="{% url "portfolio:home" %}" style="font-size: 24px;">
             <strong>RealNitinWorks</strong>
         </a>
         <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1">
@@ -31,7 +31,8 @@
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link text-white  {% if active == "feeds" %} shadow-lg {% endif %}" href="{% url 'portfolio:feeds' %}">
+                    <a class="nav-link text-white  {% if active == "feeds" %} shadow-lg {% endif %}"
+                        href="{% url 'portfolio:feeds' %}">
                         Feeds
                     </a>
                 </li>
@@ -42,6 +43,11 @@
                     </a>
                 </li>
             </ul>
+            <!-- Search form -->
+            <form class="form-inline my-2 my-lg-0 ml-md-3" method="get" action="/blog/search/">
+                <input class="form-control mr-sm-2" required type="search" placeholder="Search Posts" aria-label="Search" name="q">
+            </form>
+            <!-- Search form ends -->
         </div>
     </div>
 </nav>
