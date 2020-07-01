@@ -183,4 +183,4 @@ HAYSTACK_CONNECTIONS = {
         "PATH": os.path.join(os.path.dirname(__file__), "whoosh_index"),
     },
 }
-# HAYSTACK_SEARCH_RESULTS_PER_PAGE = 3
+# HAYSTACK_SEARCH_RESULTS_PER_PAGE = 3  # default is 20

@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 
 from .feeds import PostsFeed
 from .views import post_detail, post_list, post_share_by_email
@@ -15,5 +15,4 @@ urlpatterns = [
     path("<int:post_id>/share/", post_share_by_email, name="post_share_by_email"),
     path("feeds/", PostsFeed(), name="posts_feeds"),
     path("feeds/<int:count>/", PostsFeed(), name="latest_posts_feeds"),
-    path("search/", include('haystack.urls')),
 ]

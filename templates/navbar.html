@@ -12,7 +12,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navcol-1">
-            <ul class="nav navbar-nav ml-auto">
+            <ul class="nav navbar-nav ml-auto mr-5">
                 <li class="nav-item" role="presentation">
                     <a class="nav-link text-white {% if active == "home" %} shadow-lg {% endif %}"
                         href="{% url "portfolio:home" %}">
@@ -30,6 +30,12 @@
                         Blog <span class="badge badge-primary">{% total_posts %}</span>
                     </a>
                 </li>
+                <!-- Search form -->
+                <form class="form-inline my-2 my-lg-0 ml-md-3" method="get" action="/search/">
+                    <input class="form-control mr-sm-2" required type="search" placeholder="Search Posts"
+                        aria-label="Search" name="q">
+                </form>
+                <!-- Search form ends -->
                 <li class="nav-item" role="presentation">
                     <a class="nav-link text-white  {% if active == "feeds" %} shadow-lg {% endif %}"
                         href="{% url 'portfolio:feeds' %}">
@@ -43,11 +49,7 @@
                     </a>
                 </li>
             </ul>
-            <!-- Search form -->
-            <form class="form-inline my-2 my-lg-0 ml-md-3" method="get" action="/blog/search/">
-                <input class="form-control mr-sm-2" required type="search" placeholder="Search Posts" aria-label="Search" name="q">
-            </form>
-            <!-- Search form ends -->
+
         </div>
     </div>
 </nav>
