@@ -1,7 +1,6 @@
 import os
 
-from django.contrib.postgres.search import (SearchQuery, SearchRank,
-                                            SearchVector)
+from django.contrib.postgres import search as psql_search
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import render
 
@@ -21,13 +20,15 @@ def search(request):
     page_number = request.GET.get("page")
 
     search_vector = (
-        SearchVector("title", weight="A")
-        + SearchVector("body", weight="A")
-        + SearchVector("summary", weight="B")
+        psql_search.SearchVector("title", weight="A")
+        + psql_search.SearchVector("body", weight="A")
+        + psql_search.SearchVector("summary", weight="B")
     )
-    search_query = SearchQuery(query)
+    search_query = psql_search.SearchQuery(query)
     posts = (
-        Post.published.annotate(rank=SearchRank(search_vector, search_query))
+        Post.published.annotate(
+            rank=psql_search.SearchRank(search_vector, search_query)
+        )
         .filter(rank__gte=0.3)
         .order_by("-rank")
     )
