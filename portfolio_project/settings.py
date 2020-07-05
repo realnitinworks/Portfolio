@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "django.contrib.humanize",
     "django.contrib.sites",
     "django.contrib.sitemaps",
+    "django.contrib.postgres",
     # 3rd-party apps
     "pagedown.apps.PagedownConfig",
     "crispy_forms",
@@ -177,10 +178,11 @@ TAGGIT_CASE_INSENSITIVE = True
 
 
 # Full-text search
-HAYSTACK_CONNECTIONS = {
-    "default": {
-        "ENGINE": "haystack.backends.whoosh_backend.WhooshEngine",
-        "PATH": os.path.join(os.path.dirname(__file__), "whoosh_index"),
-    },
-}
-# HAYSTACK_SEARCH_RESULTS_PER_PAGE = 3  # default is 20
+if DEBUG:
+    HAYSTACK_CONNECTIONS = {
+        "default": {
+            "ENGINE": "haystack.backends.whoosh_backend.WhooshEngine",
+            "PATH": os.path.join(os.path.dirname(__file__), "whoosh_index"),
+        },
+    }
+    # HAYSTACK_SEARCH_RESULTS_PER_PAGE = 3  # default is 20
