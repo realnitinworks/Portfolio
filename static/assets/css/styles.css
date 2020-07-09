@@ -33,6 +33,7 @@
   --heading-underline-color: var(--third-set-primary-color);
   --list-tick-color: var(--third-set-primary-color);
   --hr-color: var(--third-set-primary-color-transparent);
+  --tag-link-hover-background-color: var(--third-set-primary-color);
 
   --fourth-set-primary-color: #4d4948;
   --code-background-color: var(--fourth-set-primary-color);
@@ -244,9 +245,9 @@ a.tag-link {
   color: white;
 }
 
-a.tag-link:hover {
+a.tag-link:hover span{
   text-decoration: None;
-  color: var(--first-set-primary-color);
+  background-color: var(--tag-link-hover-background-color);
 }
 
 .similar-posts {
