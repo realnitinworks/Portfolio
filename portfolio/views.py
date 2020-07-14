@@ -1,10 +1,13 @@
 import os
 
 from django.contrib.postgres import search as psql_search
+from django.core.mail import send_mail
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import render
 
 from blog.models import Post
+
+from .forms import ContactForm
 
 
 def home(request):
@@ -46,4 +49,35 @@ def search(request):
         request,
         "portfolio/search.html",
         {"posts": posts, "active": "home", "query": query},
+    )
+
+
+def contact(request):
+    sent = False
+
+    if request.method == "POST":
+        form = ContactForm(data=request.POST)
+        if form.is_valid():
+            name = form.cleaned_data["name"]
+            email = form.cleaned_data["email"]
+            question = form.cleaned_data["question"]
+
+            # send email
+            subject = f"{name}({email}) has a question for you."
+            message = question
+            sender = os.environ.get("EMAIL_SENDER_EMAIL")
+            send_mail(
+                subject,
+                message,
+                from_email=sender,
+                recipient_list=["realnitinworks@gmail.com"],
+            )
+            sent = True
+    else:
+        form = ContactForm()
+
+    return render(
+        request,
+        "portfolio/contact.html",
+        {"active": "contact", "sent": sent, "form": form},
     )
