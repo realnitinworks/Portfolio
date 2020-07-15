@@ -24,13 +24,13 @@
 <section id="feeds" class="section-boundary normal-text p-5">
     <div class="container">
         <h3 class="mb-4">The following feeds are available.</h3>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item mb-2">
-                <span class="badge badge-primary p-2">All Blog Posts</span> -
+        <ul class="list-group">
+            <li class="list-group-item bg-dark">
+                <span class="badge badge-info p-2">All Blog Posts</span> -
                 <a href="{% url 'blog:posts_feeds' %}">{% url 'blog:posts_feeds' %}</a>
             </li>
-            <li class="list-group-item mb-2">
-                <span class="badge badge-primary p-2">10 Latest Blog Posts</span> -
+            <li class="list-group-item bg-dark">
+                <span class="badge badge-info p-2">10 Latest Blog Posts</span> -
                 <a href="{% url 'blog:latest_posts_feeds' 10 %}">{% url 'blog:latest_posts_feeds' 10 %}</a>
             </li>
         </ul>
