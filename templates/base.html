@@ -1,4 +1,5 @@
 {% load static %}
+{% load portfolio_tags %}
 
 <!DOCTYPE html>
 <html>
@@ -37,6 +38,10 @@
     <!-- Sections -->
     {% block content %}
     {% endblock content %}
+
+    <!-- Quote section: Display random quote -->
+    {% quote %}
+    <!-- Quote section ends -->
 
     <!-- Footer -->
     {% include 'footer.html' %}
