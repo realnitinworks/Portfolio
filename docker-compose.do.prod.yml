@@ -12,6 +12,7 @@ services:
         env_file: .env
 
     nginx-proxy:
+        container_name: nginx-proxy
         image: "${NGINX_IMAGE}"
         restart: always
         volumes:
