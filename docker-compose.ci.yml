@@ -15,21 +15,44 @@ services:
         expose:
             - 8000
         env_file: 
-            - .env  # created in Dockerfile.do.prod (echo)
-    nginx:
+            - .env  # created in Dockerfile.do.prod (echo) and 'scp'-ed
+            
+    nginx-proxy:
+        container_name: nginx-proxy
         build:
             context: ./nginx
             cache_from:
                 - "${NGINX_IMAGE}"
         image: "${NGINX_IMAGE}"
+        restart: always
         volumes:
             - static_volume:/usr/src/app/staticfiles
             - media_volume:/usr/src/app/media
+            - certs:/etc/nginx/certs
+            - html:/usr/share/nginx/html
+            - vhost:/etc/nginx/vhost.d
+            - /var/run/docker.sock:/tmp/docker.sock:ro
         ports:
             - 80:80
+            - 443:443
         depends_on:
             - portfolio
+    
+    nginx-proxy-letsencrypt:
+        image: jrcs/letsencrypt-nginx-proxy-companion
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock:ro
+            - certs:/etc/nginx/certs
+            - html:/usr/share/nginx/html
+            - vhost:/etc/nginx/vhost.d
+        env_file: 
+            - .env.companion  # created in Dockerfile.do.prod and 'scp'-ed
+        depends_on: 
+            - nginx-proxy
 
 volumes:
   static_volume:
   media_volume:
+  certs:
+  html:
+  vhost:
