@@ -1,0 +1,35 @@
+version: "3.7"
+
+services:
+    portfolio:
+        build:
+            context: .
+            dockerfile: Dockerfile.do.prod
+            cache_from:
+                - "${WEB_IMAGE}"
+        image: "${WEB_IMAGE}"
+        command: gunicorn portfolio_project:application --bind 0.0.0.0:8000
+        volumes:
+            - static_volume:/usr/src/app/staticfiles
+            - media_volume:/usr/src/app/media
+        expose:
+            - 8000
+        env_file: 
+            - .env  # created in Dockerfile.do.prod (echo)
+    nginx:
+        build:
+            context: ./nginx
+            cache_from:
+                - "${NGINX_IMAGE}"
+        image: "${NGINX_IMAGE}"
+        volumes:
+            - static_volume:/usr/src/app/staticfiles
+            - media_volume:/usr/src/app/media
+        ports:
+            - 80:80
+        depends_on:
+            - portfolio
+
+volumes:
+  static_volume:
+  media_volume:
