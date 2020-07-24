@@ -32,9 +32,9 @@ jobs:
           echo EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }} >> .env
           echo EMAIL_SENDER_EMAIL=${{ secrets.EMAIL_SENDER_EMAIL }} >> .env
           echo DJANGO_ALLOWED_HOSTS=${{ secrets.DIGITAL_OCEAN_IP_ADDRESS }} >> .env
-          echo VIRTUAL_HOST=realnitinworks.com >> .env
+          echo VIRTUAL_HOST=realnitinworks.com,www.realnitinworks.com >> .env
           echo VIRTUAL_PORT=8000 >> .env
-          echo LETSENCRYPT_HOST=realnitinworks.com >> .env
+          echo LETSENCRYPT_HOST=realnitinworks.com,www.realnitinworks.com >> .env
           echo DEFAULT_EMAIL=nitin.cherian@gmail.com >> .env.companion
           echo NGINX_PROXY_CONTAINER=nginx-proxy >> .env.companion
       - name: Set environment variables
@@ -84,9 +84,9 @@ jobs:
           echo WEB_IMAGE=${{ env.WEB_IMAGE }} >> .env
           echo NGINX_IMAGE=${{ env.NGINX_IMAGE }} >> .env 
           echo DJANGO_ALLOWED_HOSTS=${{ secrets.DJANGO_ALLOWED_HOSTS }} >> .env
-          echo VIRTUAL_HOST=realnitinworks.com >> .env
+          echo VIRTUAL_HOST=realnitinworks.com,www.realnitinworks.com >> .env
           echo VIRTUAL_PORT=8000 >> .env
-          echo LETSENCRYPT_HOST=realnitinworks.com >> .env
+          echo LETSENCRYPT_HOST=realnitinworks.com,www.realnitinworks.com >> .env
           echo DEFAULT_EMAIL=nitin.cherian@gmail.com >> .env.companion
           echo NGINX_PROXY_CONTAINER=nginx-proxy >> .env.companion
       - name: Add the private SSH key to the ssh-agent
