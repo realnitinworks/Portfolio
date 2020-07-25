@@ -17,6 +17,7 @@ jobs:
       - name: Add environment variables to .env
         run: |
           echo DEBUG=0 >> .env
+          echo PROJECT_ADMIN_URL=${{ secrets.PROJECT_ADMIN_URL }} >> .env
           echo POSTS_PER_PAGE=6 >> .env
           echo SEARCH_RESULTS_PER_PAGE=20 >> .env
           echo COMMENTS_PER_PAGE=10 >> .env
@@ -67,6 +68,7 @@ jobs:
       - name: Add environment variables to .env
         run: |
           echo DEBUG=0 >> .env
+          echo PROJECT_ADMIN_URL=${{ secrets.PROJECT_ADMIN_URL }} >> .env
           echo POSTS_PER_PAGE=6 >> .env
           echo SEARCH_RESULTS_PER_PAGE=20 >> .env
           echo COMMENTS_PER_PAGE=10 >> .env
