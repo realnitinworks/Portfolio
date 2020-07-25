@@ -36,8 +36,8 @@ jobs:
           echo VIRTUAL_HOST=realnitinworks.com,www.realnitinworks.com >> .env
           echo VIRTUAL_PORT=8000 >> .env
           echo LETSENCRYPT_HOST=realnitinworks.com,www.realnitinworks.com >> .env
-          echo RECAPTCHA_PUBLIC_KEY=${{ RECAPTCHA_PUBLIC_KEY }} >> .env
-          echo RECAPTCHA_PRIVATE_KEY=${{ RECAPTCHA_PRIVATE_KEY }} >> .env
+          echo RECAPTCHA_PUBLIC_KEY=${{ secrets.RECAPTCHA_PUBLIC_KEY }} >> .env
+          echo RECAPTCHA_PRIVATE_KEY=${{ secrets.RECAPTCHA_PRIVATE_KEY }} >> .env
           echo DEFAULT_EMAIL=nitin.cherian@gmail.com >> .env.companion
           echo NGINX_PROXY_CONTAINER=nginx-proxy >> .env.companion
       - name: Set environment variables
@@ -91,8 +91,8 @@ jobs:
           echo VIRTUAL_HOST=realnitinworks.com,www.realnitinworks.com >> .env
           echo VIRTUAL_PORT=8000 >> .env
           echo LETSENCRYPT_HOST=realnitinworks.com,www.realnitinworks.com >> .env
-          echo RECAPTCHA_PUBLIC_KEY=${{ RECAPTCHA_PUBLIC_KEY }} >> .env
-          echo RECAPTCHA_PRIVATE_KEY=${{ RECAPTCHA_PRIVATE_KEY }} >> .env
+          echo RECAPTCHA_PUBLIC_KEY=${{ secrets.RECAPTCHA_PUBLIC_KEY }} >> .env
+          echo RECAPTCHA_PRIVATE_KEY=${{ secrets.RECAPTCHA_PRIVATE_KEY }} >> .env
           echo DEFAULT_EMAIL=nitin.cherian@gmail.com >> .env.companion
           echo NGINX_PROXY_CONTAINER=nginx-proxy >> .env.companion
           echo POSTGRES_USER=${{ secrets.SQL_USER }} >> .env.db
