@@ -10,6 +10,15 @@ services:
         ports:
             - 8000:8000
         env_file: .env
+        depends_on: 
+            - portfolio-db
+
+    portfolio-db:
+        image: postgres:12-alpine
+        volumes:
+            - postgres_data:/var/lib/postgresql/data/
+        env_file: 
+            - .env.db
 
     nginx-proxy:
         container_name: nginx-proxy
@@ -41,6 +50,7 @@ services:
             - nginx-proxy
 
 volumes:
+  postgres_data:
   static_volume:
   media_volume:
   certs:

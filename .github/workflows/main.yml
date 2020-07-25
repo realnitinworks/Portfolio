@@ -89,6 +89,9 @@ jobs:
           echo LETSENCRYPT_HOST=realnitinworks.com,www.realnitinworks.com >> .env
           echo DEFAULT_EMAIL=nitin.cherian@gmail.com >> .env.companion
           echo NGINX_PROXY_CONTAINER=nginx-proxy >> .env.companion
+          echo POSTGRES_USER=${{ secrets.SQL_USER }} >> .env.db
+          echo POSTGRES_PASSWORD=${{ secrets.SQL_PASSWORD }} >> .env.db
+          echo POSTGRES_DB=${{ secrets.SQL_DATABASE }} >> .env.db
       - name: Add the private SSH key to the ssh-agent
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
@@ -102,10 +105,12 @@ jobs:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           scp  -o StrictHostKeyChecking=no -r ./.env .env.companion ./docker-compose.do.prod.yml root@${{ secrets.DIGITAL_OCEAN_IP_ADDRESS }}:/app
+          scp  -o StrictHostKeyChecking=no -r .env.db root@${{ secrets.DIGITAL_OCEAN_IP_ADDRESS }}:/app
           ssh -o StrictHostKeyChecking=no root@${{ secrets.DIGITAL_OCEAN_IP_ADDRESS }} << 'ENDSSH'
             cd /app
             source .env
             source .env.companion
+            source .env.db
             docker login docker.pkg.github.com -u realnitinworks -p ${{ secrets.GITHUBACTION_TOKEN }}
             docker pull $WEB_IMAGE
             docker pull $NGINX_IMAGE
