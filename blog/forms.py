@@ -1,3 +1,5 @@
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV3
 from django import forms
 from pagedown.widgets import AdminPagedownWidget
 
@@ -28,9 +30,20 @@ class PostEmailForm(forms.Form):
     email = forms.EmailField()
     to = forms.EmailField()
     comment = forms.CharField(required=False, widget=forms.Textarea)
+    captcha = ReCaptchaField(widget=ReCaptchaV3)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["captcha"].label = False
 
 
 class PostCommentForm(forms.ModelForm):
+    captcha = ReCaptchaField(widget=ReCaptchaV3)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["captcha"].label = False
+
     class Meta:
         model = Comment
         fields = ("name", "email", "body")
