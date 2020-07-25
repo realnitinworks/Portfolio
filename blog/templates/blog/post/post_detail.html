@@ -34,7 +34,8 @@
         <span class="post-text">{{ post.body|markdown }}</span>
         <div class="mt-5">
             <span class="text-muted h4">Share this post: </span>
-            <a href="{% url 'blog:post_share_by_email' post.id %}"><i class="fa fa-envelope fa-2x" title="E-mail"></i></a>
+            <a href="{% url 'blog:post_share_by_email' post.id %}"><i class="fa fa-envelope fa-2x"
+                    title="E-mail"></i></a>
         </div>
     </div>
 </div>
@@ -104,6 +105,8 @@
                     </a>
                 </p>
             </li>
+            {% empty %}
+            <li>No posts similar to this post yet.</li>
             {% endfor %}
         </ul>
     </div>

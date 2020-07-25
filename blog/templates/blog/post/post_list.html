@@ -66,7 +66,8 @@
                         <!-- Post metadata ends -->
 
                         <!-- Post tags list -->
-                        {% post_tags post %} <!-- Inclusion tag for tags display -->                        
+                        {% post_tags post %}
+                        <!-- Inclusion tag for tags display -->
                         <!-- Post tags list ends -->
                     </div>
                     {% endfor %}
@@ -95,6 +96,13 @@
                         </li>
                         {% endfor %}
                     </ul>
+                    {% if not most_commented_posts %}
+                    <div class="progress mt-3">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar"
+                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                    </div>
+                    <p class="text-info mt-2 pl-2">Posts are picking up momentum ...</p>
+                    {% endif %}
                 </div>
                 <div class="mt-3 p-3">
                     <h3>Popular tags</h3>
@@ -107,6 +115,12 @@
                             {{ tag.name }}({{ tag.num_times }})
                         </span>
                     </a>
+                    {% empty %}
+                    <div class="progress mt-3">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                    </div>
+                    <p class="text-primary mt-2 pl-2">Tags are picking up momentum ...</p>
                     {% endfor %}
                 </div>
             </div>
