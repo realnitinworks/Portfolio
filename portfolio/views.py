@@ -67,10 +67,7 @@ def contact(request):
             message = question
             sender = os.environ.get("EMAIL_SENDER_EMAIL")
             send_mail(
-                subject,
-                message,
-                from_email=sender,
-                recipient_list=[sender],
+                subject, message, from_email=sender, recipient_list=[sender],
             )
             sent = True
     else:
