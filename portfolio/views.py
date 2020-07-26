@@ -70,7 +70,7 @@ def contact(request):
                 subject,
                 message,
                 from_email=sender,
-                recipient_list=["realnitinworks@gmail.com"],
+                recipient_list=[sender],
             )
             sent = True
     else:
