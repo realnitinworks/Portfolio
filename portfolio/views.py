@@ -3,11 +3,12 @@ import os
 from django.contrib.postgres import search as psql_search
 from django.core.mail import send_mail
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 from blog.models import Post
 
 from .forms import ContactForm
+from .models import Project
 
 
 def home(request):
@@ -77,4 +78,20 @@ def contact(request):
         request,
         "portfolio/contact.html",
         {"active": "contact", "sent": sent, "form": form},
+    )
+
+
+def portfolio(request):
+    projects = Project.objects.all()
+
+    return render(
+        request, "portfolio/project/project_list.html", {"projects": projects}
+    )
+
+
+def project_detail(request, id, slug):
+    project = get_object_or_404(Project, id=id, slug=slug)
+
+    return render(
+        request, "portfolio/project/project_detail.html", {"project": project}
     )

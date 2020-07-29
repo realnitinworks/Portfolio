@@ -196,3 +196,8 @@ RECAPTCHA_PRIVATE_KEY = os.environ.get("RECAPTCHA_PRIVATE_KEY", "")
 RECAPTCHA_DOMAIN = "www.recaptcha.net"  # In the event www.google.com is not accessible
 RECAPTCHA_REQUIRED_SCORE = 0.85  # Determine the likelihood of a bot
 SILENCED_SYSTEM_CHECKS = ["captcha.recaptcha_test_key_error"]
+
+
+# Media
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")

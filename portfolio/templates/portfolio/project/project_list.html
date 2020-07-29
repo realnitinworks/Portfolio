@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ block.super }} - Portfolio
+{% endblock title %}
+
+<!-- Dynamic content on banner overlay -->
+{% block banner_content %}
+<div class="col-sm-12 d-flex align-items-center justify-content-center">
+    <div class="text-center">
+        <h1 class="display-4">My Portfolio</h1>
+        <hr class="hr-accent">
+    </div>
+</div>
+{% endblock banner_content %}
+<!-- Dynamic content on banner overlay ends -->
+
+{% block content %}
+
+<div class="section-primary section-boundary">
+    <div class="container-fluid">
+        <div id="project-grid">
+            <div class="portfolio-section-title pt-5 pb-2">
+                <h2>
+                    Projects
+                </h2>
+            </div>
+            <div class="row py-2 p-md-5">
+                {% for project in projects %}
+                <div class="col-lg-4">
+                    <a class="portfolio-item" href="{{ project.get_absolute_url }}">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <div class="display-4">{{ project.title }}</div>
+                                <p class="mb-0">{{ project.summary|truncatewords:10 }}</p>
+                                <p class="mt-2">
+                                    {% for skill in project.skills.all %}
+                                    <span class="badge badge-warning">{{ skill }}</span>
+                                    {% endfor %}
+                                </p>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="{{ project.image.url }}" alt="">
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

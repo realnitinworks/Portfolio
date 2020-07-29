@@ -16,6 +16,7 @@ Including another URLconf
 import os
 
 from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path
@@ -43,3 +44,4 @@ urlpatterns = [
 # Using the django-haystack search only for development for now.
 if settings.DEBUG:
     urlpatterns += [path("search/", include("haystack.urls"))]
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

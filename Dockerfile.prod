@@ -16,6 +16,9 @@ ENV PYTHONUNBUFFERED 1
 RUN apk update \
     && apk add postgresql-dev gcc python3-dev musl-dev
 
+# Install Pillow dependencies
+RUN apk add jpeg-dev zlib-dev
+
 # Install dependencies
 RUN pip install --upgrade pip
 COPY ./requirements.txt .
