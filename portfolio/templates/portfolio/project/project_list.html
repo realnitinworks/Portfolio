@@ -17,36 +17,42 @@
 
 {% block content %}
 
+<!-- Portfolio Section -->
 <div class="section-primary section-boundary">
     <div class="container-fluid">
-        <div id="project-grid">
-            <div class="portfolio-section-title pt-5 pb-2">
-                <h2>
-                    Projects
-                </h2>
-            </div>
-            <div class="row py-2 p-md-5">
-                {% for project in projects %}
-                <div class="col-lg-4">
-                    <a class="portfolio-item" href="{{ project.get_absolute_url }}">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <div class="display-4">{{ project.title }}</div>
-                                <p class="mb-0">{{ project.summary|truncatewords:10 }}</p>
-                                <p class="mt-2">
-                                    {% for skill in project.skills.all %}
-                                    <span class="badge badge-warning">{{ skill }}</span>
-                                    {% endfor %}
-                                </p>
-                            </div>
-                        </div>
-                        <img class="img-fluid" src="{{ project.image.url }}" alt="">
-                    </a>
+        <div id="portfolio-grid" class="p-5">
+
+            <!-- Projects -->
+            <div id="projects">
+                <div class="portfolio-category-title mb-4">
+                    <h2>
+                        Projects
+                    </h2>
                 </div>
-                {% endfor %}
+                <div class="card-deck">
+                    {% for project in  projects %}
+                    <div class="card bg-dark">
+                        <a class="portfolio-item" href="{{ project.get_absolute_url }}">
+                            <img class="card-img-top" src="{{ project.image.url }}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ project.title }}</h5>
+                                <p class="card-text">{{ project.summary }}</p>
+                            </div>
+                        </a>
+                        <div class="card-footer">
+                            {% for skill in project.skills.all %}
+                            <span class="badge badge-warning">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
+            <!-- Projects end-->
+            
         </div>
     </div>
 </div>
+<!-- Portfolio Section ends -->
 
 {% endblock content %}

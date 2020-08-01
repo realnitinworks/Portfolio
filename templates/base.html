@@ -24,13 +24,15 @@
     {% include 'message.html' %}
 
     <!-- Banner with overlay below the Navbar -->
-    <div id="banner" class="header pt-5 p-md-none section-boundary">
-        <div class="row h-100">
-            <div class="col-md-12 d-flex h-100 flex-column flex-sm-row">
-                <!-- Dyanamic content on top of the banner -->
-                {% block banner_content %}
-                {% endblock banner_content %}
-                <!-- Dyanamic content ends -->
+    <div id="banner-section" class="section-boundary">
+        <div id="banner" class="header pt-5 p-md-none">
+            <div class="row h-100">
+                <div class="col-md-12 d-flex h-100 flex-column flex-sm-row">
+                    <!-- Dyanamic content on top of the banner -->
+                    {% block banner_content %}
+                    {% endblock banner_content %}
+                    <!-- Dyanamic content ends -->
+                </div>
             </div>
         </div>
     </div>
