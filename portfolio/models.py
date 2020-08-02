@@ -25,8 +25,9 @@ class Project(models.Model):
     summary = models.CharField(max_length=600)
     detail = models.TextField()
     skills = models.ManyToManyField(Skill, related_name="projects", blank=True)
-    image = models.ImageField(upload_to=image_path, blank=True)
+    image = models.ImageField(upload_to=image_path)
     active = models.BooleanField(default=True)
+    repository = models.URLField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
