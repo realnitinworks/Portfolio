@@ -29,9 +29,9 @@
                         Projects
                     </h2>
                 </div>
-                <div class="card-deck">
+                <div class="card-columns">
                     {% for project in  projects %}
-                    <div class="card bg-dark">
+                    <div class="card bg-dark mb-4">
                         <a class="portfolio-item" href="{{ project.get_absolute_url }}">
                             <img class="card-img-top" src="{{ project.image.url }}" alt="Card image cap">
                             <div class="card-body">
@@ -49,7 +49,7 @@
                 </div>
             </div>
             <!-- Projects end-->
-            
+
         </div>
     </div>
 </div>
