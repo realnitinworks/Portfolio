@@ -50,6 +50,28 @@
             </div>
             <!-- Projects end-->
 
+            <!-- Certificates -->
+            <div id="certificates" class="mt-5">
+                <div class="portfolio-category-title mb-4">
+                    <h2>
+                        Certificates
+                    </h2>
+                </div>
+                <div class="card-columns">
+                    {% for group in  certificate_groups %}
+                    <div class="card bg-dark mb-4">
+                        <a class="portfolio-item" href="{{ group.get_absolute_url }}">
+                            <img class="card-img-top" src="{{ group.image.url }}" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title text-center text-warning">{{ group.name }}</h4>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- Certificates end-->
+
         </div>
     </div>
 </div>

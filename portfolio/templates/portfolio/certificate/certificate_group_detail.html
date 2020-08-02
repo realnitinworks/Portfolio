@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load blog_tags %}
+
+{% block title %}
+{{ block.super }} - certificate - {{ certificate_group.name }}
+{% endblock title %}
+
+<!-- Dynamic content on banner overlay -->
+{% block banner_content %}
+<div class="col d-flex align-items-center justify-content-center">
+    <div class="text-center">
+        <h1 class="display-4 text-warning">{{ certificate_group.name }}</h1>
+        <p class="text-success" style="font-size: 2.25rem;">{{ certificate_group.description }}</p>
+        <hr class="hr-accent">
+    </div>
+</div>
+{% endblock banner_content %}
+<!-- Dynamic content on banner overlay ends -->
+
+<!-- Page content sections -->
+{% block content %}
+
+<!-- Section 1-->
+<div class="d-flex justify-content-center section-primary p-5 section-boundary portfolio-links">
+    <div class="container">
+        <ul class="list-group list-group-flush rounded">
+            {% for certificate in certificate_group.certificates.all %}
+            <li class="list-group-item bg-dark p-4" style="font-size: 2rem;">
+                #{{forloop.counter}}. <a href="{% if certificate.url %}{{ certificate.url }}{% else %}#{% endif %}">{{ certificate.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="mt-5">
+            <a class="btn btn-primary text-white" href="{% url 'portfolio:portfolio' %}#certificates">Back to All
+                Certificates</a>
+        </div>
+    </div>
+</div>
+
+<!-- Section 1 ends -->
+
+{% endblock content %}

@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404, render
 from blog.models import Post
 
 from .forms import ContactForm
-from .models import Project
+from .models import CertificateGroup, Project
 
 
 def home(request):
@@ -83,9 +83,12 @@ def contact(request):
 
 def portfolio(request):
     projects = Project.objects.all()
+    certificate_groups = CertificateGroup.objects.all()
 
     return render(
-        request, "portfolio/project/project_list.html", {"projects": projects}
+        request,
+        "portfolio/portfolio.html",
+        {"projects": projects, "certificate_groups": certificate_groups},
     )
 
 
@@ -94,4 +97,14 @@ def project_detail(request, id, slug):
 
     return render(
         request, "portfolio/project/project_detail.html", {"project": project}
+    )
+
+
+def certificate_group_detail(request, id, slug):
+    certificate_group = get_object_or_404(CertificateGroup, id=id, slug=slug)
+
+    return render(
+        request,
+        "portfolio/certificate/certificate_group_detail.html",
+        {"certificate_group": certificate_group},
     )
