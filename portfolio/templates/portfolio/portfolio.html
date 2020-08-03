@@ -72,6 +72,28 @@
             </div>
             <!-- Certificates end-->
 
+            <!-- Opensource projects -->
+            <div id="opensource" class="mt-5">
+                <div class="portfolio-category-title mb-4">
+                    <h2>
+                        Opensource Contributions
+                    </h2>
+                </div>
+                <div class="card-columns">
+                    {% for project in  opensource_projects %}
+                    <div class="card bg-dark mb-4">
+                        <a class="portfolio-item" href="{{ project.get_absolute_url }}">
+                            <img class="card-img-top" src="{{ project.image.url }}" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title text-center text-white">{{ project.project_name }}</h4>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- Opensource projects end-->
+
         </div>
     </div>
 </div>

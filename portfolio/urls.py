@@ -17,6 +17,11 @@ urlpatterns = [
         views.certificate_group_detail,
         name="certificate_group_detail",
     ),
+    path(
+        "opensource/<int:id>/<slug:slug>/",
+        views.opensource_project_detail,
+        name="opensource_project_detail",
+    ),
 ]
 
 # Use PostgreSQL full-text search engine in production

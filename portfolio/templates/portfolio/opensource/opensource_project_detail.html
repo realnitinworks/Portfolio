@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load blog_tags %}
+
+{% block title %}
+{{ block.super }} - opensource - {{ opensource_project.project_name }}
+{% endblock title %}
+
+<!-- Dynamic content on banner overlay -->
+{% block banner_content %}
+<div class="col d-flex align-items-center justify-content-center">
+    <div class="text-center">
+        <h1 class="display-4 text-warning">{{ opensource_project.project_name }}</h1>
+        <p class="text-success" style="font-size: 2.25rem;">{{ opensource_project.description }}</p>
+        <hr class="hr-accent">
+    </div>
+</div>
+{% endblock banner_content %}
+<!-- Dynamic content on banner overlay ends -->
+
+<!-- Page content sections -->
+{% block content %}
+
+<!-- Section 1-->
+<div class="d-flex justify-content-center section-primary p-5 section-boundary portfolio-links">
+    <div class="container">
+        <ul class="list-group list-group-flush rounded">
+            {% for contribution in opensource_project.contributions.all %}
+            <li class="list-group-item bg-dark p-4" style="font-size: 2rem;">
+                #{{forloop.counter}}. <a
+                    href="{% if contribution.url %}{{ contribution.url }}{% else %}#{% endif %}">{{ contribution.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="mt-5">
+            <a class="btn btn-primary text-white" href="{% url 'portfolio:portfolio' %}#opensource">Back to All
+                Opensource projects</a>
+        </div>
+    </div>
+</div>
+
+<!-- Section 1 ends -->
+
+{% endblock content %}

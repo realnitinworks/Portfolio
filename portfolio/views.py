@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404, render
 from blog.models import Post
 
 from .forms import ContactForm
-from .models import CertificateGroup, Project
+from .models import CertificateGroup, OpenSourceProject, Project
 
 
 def home(request):
@@ -84,11 +84,17 @@ def contact(request):
 def portfolio(request):
     projects = Project.objects.all()
     certificate_groups = CertificateGroup.objects.all()
+    opensource_projects = OpenSourceProject.objects.all()
 
     return render(
         request,
         "portfolio/portfolio.html",
-        {"projects": projects, "certificate_groups": certificate_groups},
+        {
+            "projects": projects,
+            "certificate_groups": certificate_groups,
+            "opensource_projects": opensource_projects,
+            "active": "portfolio",
+        },
     )
 
 
@@ -96,7 +102,9 @@ def project_detail(request, id, slug):
     project = get_object_or_404(Project, id=id, slug=slug)
 
     return render(
-        request, "portfolio/project/project_detail.html", {"project": project}
+        request,
+        "portfolio/project/project_detail.html",
+        {"project": project, "active": "portfolio"},
     )
 
 
@@ -106,5 +114,15 @@ def certificate_group_detail(request, id, slug):
     return render(
         request,
         "portfolio/certificate/certificate_group_detail.html",
-        {"certificate_group": certificate_group},
+        {"certificate_group": certificate_group, "active": "portfolio"},
+    )
+
+
+def opensource_project_detail(request, id, slug):
+    opensource_project = get_object_or_404(OpenSourceProject, id=id, slug=slug)
+
+    return render(
+        request,
+        "portfolio/opensource/opensource_project_detail.html",
+        {"opensource_project": opensource_project, "active": "portfolio"},
     )
