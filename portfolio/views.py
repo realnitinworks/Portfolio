@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404, render
 from blog.models import Post
 
 from .forms import ContactForm
-from .models import CertificateGroup, OpenSourceProject, Project
+from .models import CertificateGroup, CodingProfile, OpenSourceProject, Project
 
 
 def home(request):
@@ -85,6 +85,7 @@ def portfolio(request):
     projects = Project.objects.all()
     certificate_groups = CertificateGroup.objects.all()
     opensource_projects = OpenSourceProject.objects.all()
+    profiles = CodingProfile.objects.all()
 
     return render(
         request,
@@ -93,6 +94,7 @@ def portfolio(request):
             "projects": projects,
             "certificate_groups": certificate_groups,
             "opensource_projects": opensource_projects,
+            "profiles": profiles,
             "active": "portfolio",
         },
     )

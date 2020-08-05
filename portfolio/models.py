@@ -46,7 +46,7 @@ class Project(models.Model):
 
 class CertificateGroup(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    slug = models.CharField(max_length=100, blank=True)
+    slug = models.SlugField(max_length=100, blank=True)
     description = models.CharField(max_length=500)
     image = models.ImageField(upload_to=image_path)
 
@@ -82,7 +82,7 @@ class Certificate(models.Model):
 
 class OpenSourceProject(models.Model):
     project_name = models.CharField(max_length=100, unique=True)
-    slug = models.CharField(max_length=100, blank=True)
+    slug = models.SlugField(max_length=100, blank=True)
     description = models.CharField(max_length=500)
     image = models.ImageField(upload_to=image_path)
 
@@ -109,4 +109,18 @@ class OpenSourceContribution(models.Model):
         ordering = ("-contributed_on", "name")
 
     def __str__(self):
+        return f"{self.name}"
+
+
+class CodingProfile(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    slug = models.SlugField(max_length=100, blank=True)
+    url = models.URLField()
+    image = models.ImageField(upload_to=image_path)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def __str__(self) -> str:
         return f"{self.name}"

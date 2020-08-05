@@ -40,3 +40,8 @@ class OpenSourceProjectAdmin(admin.ModelAdmin):
 @admin.register(models.OpenSourceContribution)
 class OpenSourceContributionAdmin(admin.ModelAdmin):
     list_display = ("name", "project", "url", "contributed_on")
+
+
+@admin.register(models.CodingProfile)
+class CodingProfileAdmin(admin.ModelAdmin):
+    list_display = ("name", "slug", "image", "url")

@@ -94,6 +94,28 @@
             </div>
             <!-- Opensource projects end-->
 
+            <!-- Coding profiles -->
+            <div id="coding-profile" class="mt-5">
+                <div class="portfolio-category-title mb-4">
+                    <h2>
+                        Coding Profiles
+                    </h2>
+                </div>
+                <div class="card-columns">
+                    {% for profile in  profiles %}
+                    <div class="card bg-dark mb-4">
+                        <a class="portfolio-item" href="{{ profile.url }}">
+                            <img class="card-img-top" src="{{ profile.image.url }}" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title text-center text-warning">{{ profile.name }}</h4>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- Coding profiles end-->
+
         </div>
     </div>
 </div>
