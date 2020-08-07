@@ -138,6 +138,23 @@ a.navbar-brand:hover {
   color: var(--quote-color);
 }
 
+#quote .container {
+  max-width: 1000px;
+  margin: auto;
+  min-height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quote-text {
+  font-size: 2.75rem;
+}
+
+#quote .fa-quote-left {
+  font-size: 3rem;
+}
+
 footer {
   background-color: var(--footer-background);
   color: var(--footer-color);
