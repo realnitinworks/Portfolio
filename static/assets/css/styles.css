@@ -208,6 +208,18 @@ footer a:hover {
   padding: 2rem;
 }
 
+.post-text h1{
+  color: #ffc107;
+}
+
+.post-text h2 {
+  color: #28a745;
+}
+
+.post-text h3 {
+  color: #007bff;
+}
+
 .email-share-form a{
   color: var(--email-share-form-link-color);
   text-decoration: none;
