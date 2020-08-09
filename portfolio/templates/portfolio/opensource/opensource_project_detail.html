@@ -28,7 +28,7 @@
             {% for contribution in opensource_project.contributions.all %}
             <li class="list-group-item bg-dark p-4" style="font-size: 2rem;">
                 #{{forloop.counter}}. <a
-                    href="{% if contribution.url %}{{ contribution.url }}{% else %}#{% endif %}">{{ contribution.name }}</a>
+                    href="{% if contribution.url %}{{ contribution.url }}{% else %}#{% endif %}" target="_blank">{{ contribution.name }}</a>
             </li>
             {% endfor %}
         </ul>

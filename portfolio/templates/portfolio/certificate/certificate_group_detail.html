@@ -27,7 +27,7 @@
         <ul class="list-group list-group-flush rounded">
             {% for certificate in certificate_group.certificates.all %}
             <li class="list-group-item bg-dark p-4" style="font-size: 2rem;">
-                #{{forloop.counter}}. <a href="{% if certificate.url %}{{ certificate.url }}{% else %}#{% endif %}">{{ certificate.name }}</a>
+                #{{forloop.counter}}. <a href="{% if certificate.url %}{{ certificate.url }}{% else %}#{% endif %}" target="_blank">{{ certificate.name }}</a>
             </li>
             {% endfor %}
         </ul>
