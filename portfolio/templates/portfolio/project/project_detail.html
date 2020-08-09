@@ -25,8 +25,11 @@
 <div class="d-flex justify-content-center section-primary p-5 post-detail section-boundary">
     <div class="container">
         <span class="post-text">{{ project.detail|markdown }}</span>
+        <p class="mt-5 text-warning" style="font-size: 1.8rem;">Project Repository: <a href="{{ project.repository }}"
+                target="_blank"><i class="fa fa-github"></i></a></p>
         <div class="mt-5">
-            <a class="btn btn-primary text-white" href="{% url 'portfolio:portfolio' %}#projects">Back to All Projects</a>
+            <a class="btn btn-primary text-white" href="{% url 'portfolio:portfolio' %}#projects">Back to All
+                Projects</a>
         </div>
     </div>
 </div>
