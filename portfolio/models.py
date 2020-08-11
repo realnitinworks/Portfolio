@@ -24,7 +24,7 @@ def compress_image(image):
     output_io_stream = BytesIO()
     tmp_image.save(output_io_stream, format="JPEG", quality=30)
     output_io_stream.seek(0)
-    name = image.name.split(".")[0]
+    name = image.name.rsplit(".", maxsplit=1)[0]  # Remove the extension
     image = InMemoryUploadedFile(
         output_io_stream,
         "ImageField",
