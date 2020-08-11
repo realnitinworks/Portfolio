@@ -1,8 +1,13 @@
+import sys
+from io import BytesIO
+
 from django.contrib.auth.models import AbstractUser
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
+from PIL import Image
 
 
 class CustomUser(AbstractUser):
@@ -12,6 +17,23 @@ class CustomUser(AbstractUser):
 def image_path(instance, filename):
     portfolio_category = f"{instance.__class__.__name__.lower()}s"
     return f"{portfolio_category}/{instance.slug}/{filename}"
+
+
+def compress_image(image):
+    tmp_image = Image.open(image)
+    output_io_stream = BytesIO()
+    tmp_image.save(output_io_stream, format="JPEG", quality=30)
+    output_io_stream.seek(0)
+    name = image.name.split(".")[0]
+    image = InMemoryUploadedFile(
+        output_io_stream,
+        "ImageField",
+        f"{name}.jpg",
+        "image/jpeg",
+        sys.getsizeof(output_io_stream),
+        None,
+    )
+    return image
 
 
 class Skill(models.Model):
@@ -37,6 +59,10 @@ class Project(models.Model):
     class Meta:
         ordering = ("-created",)
 
+    def save(self, *args, **kwargs):
+        self.image = compress_image(self.image)
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return f"{self.title}"
 
@@ -52,6 +78,7 @@ class CertificateGroup(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
+        self.image = compress_image(self.image)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -88,6 +115,7 @@ class OpenSourceProject(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.project_name)
+        self.image = compress_image(self.image)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -120,6 +148,7 @@ class CodingProfile(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
+        self.image = compress_image(self.image)
         super().save(*args, **kwargs)
 
     def __str__(self) -> str:
