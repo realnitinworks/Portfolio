@@ -16,7 +16,13 @@
 </div>
 <div class="col-sm-6 d-flex justify-content-center align-items-center">
     <picture>
-        <img src="{% static "assets/img/me.png" %}" class="img-fluid rounded-circle shadow-lg" alt="Picture of Me">
+        <source srcset="{% static "assets/img/me.webp" %}" class="img-fluid rounded-circle shadow-lg" type="image/webp"
+            media="(min-width: 745px)">
+        <source srcset="{% static "assets/img/me-s.webp" %}" class="img-fluid rounded-circle shadow-lg"
+            type="image/webp">
+        <source srcset="{% static "assets/img/me.png" %}" class="img-fluid rounded-circle shadow-lg" type="image/png"
+            media="(min-width: 745px)">
+        <img src="{% static "assets/img/me-s.png" %}" class="img-fluid rounded-circle shadow-lg" alt="Picture of Me">
     </picture>
 </div>
 {% endblock banner_content %}
@@ -29,17 +35,27 @@
 <section id="about" class="section-boundary">
     <div class="container">
         <div class="row p-3" style="border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 10px;">
-            <div class="col-lg-5 d-none d-lg-block"><img class="img-fluid shadow-lg rounded"
-                    src="{% static "assets/img/skills_list.jpeg" %}" style="height: 750px;"></div>
+            <div class="col-lg-5 d-none d-lg-block">
+                <picture>
+                    <source srcset="{% static "assets/img/skills_list.webp" %}"
+                        class="img-fluid rounded-circle shadow-lg" type="image/webp" style="height: 750px;">
+                    <source srcset="{% static "assets/img/skills_list.jpeg" %}"
+                        class="img-fluid rounded-circle shadow-lg" type="image/jpeg" style="height: 750px;">
+                    <img class="img-fluid shadow-lg rounded" src="{% static "assets/img/skills_list.jpeg" %}"
+                        style="height: 750px;">
+                </picture>
+            </div>
             <div class="col-lg-7 pl-3">
                 <h3 class="pb-2"><span class="heading-underline">About Me</span></h3>
                 <p class="text-left normal-text">I am Nitin George Cherian, a Software Developer, Learner and Blogger.
                     Hailing from India,
                     I live in Bangalore with my wife and two sons.</p>
-                <p class="text-left normal-text">My area of interest and work includes Web Development, Computer Networks,
+                <p class="text-left normal-text">My area of interest and work includes Web Development, Computer
+                    Networks,
                     Concurrent and Distributed Systems.
                     Python is my favorite programming language and I am an avid Pythonista.</p>
-                <p class="text-left normal-text">During my free time, I do side projects, write blog posts, and polish my
+                <p class="text-left normal-text">During my free time, I do side projects, write blog posts, and polish
+                    my
                     skills in Programming and&nbsp;Software Design.</p>
                 <p class="text-left normal-text">My Philosophy resonates with the Unix Philosophy - <span
                         class="text-success">Do One Thing and Do it Well.</span></p>
