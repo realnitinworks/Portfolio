@@ -17,7 +17,7 @@ and on some days my blog was reported as `not secure`. In addition to this, I di
 
 The first thing which I did was to create a repository on Github. Then I created a [Project](https://github.com/realnitinworks/portfolio/projects) on the repository and started listing down all the features (in Kanban style) I needed for my web application. This gave me a clear idea of my target. Slowly but surely I knocked down and completed one task after another.
 
-Many a time I did not know how to tackle a task at first. But I stayed long with the problem with losing focus. I struggled with the problem, kept searching for the answer until I found it. 
+Many a time I did not know how to tackle a task at first. But I stayed long with the problem without losing focus. I struggled with the problem, kept searching for the answer until I found it. 
 
 Before this project, I had experience with `Django` and `Flask`. However, I wanted to get serious with at least one of these. I decided to go with Django. But it does matter. It is just my personal preference. In the past, I used to get bogged down by the UI design. That is where a framework like `Bootstrap` helped me to get started without getting lost in the frontend.
 
