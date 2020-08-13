@@ -19,7 +19,7 @@ The first thing which I did was to create a repository on Github. Then I created
 
 Many a time I did not know how to tackle a task at first. But I stayed long with the problem without losing focus. I struggled with the problem, kept searching for the answer until I found it. 
 
-Before this project, I had experience with `Django` and `Flask`. However, I wanted to get serious with at least one of these. I decided to go with Django. But it does matter. It is just my personal preference. In the past, I used to get bogged down by the UI design. That is where a framework like `Bootstrap` helped me to get started without getting lost in the frontend.
+Before this project, I had experience with `Django` and `Flask`. However, I wanted to get serious with at least one of these. I decided to go with Django. But it doesn't matter. It is just my personal preference. In the past, I used to get bogged down by the UI design. That is where a framework like `Bootstrap` helped me to get started without getting lost in the frontend.
 
 I containerized my applications using `Docker` and `Docker-Compose` for development and production. My applications run on containers deployed through Docker and Docker-Compose on the Digital Ocean cloud.
 
